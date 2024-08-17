@@ -15,4 +15,4 @@ Directories:
 
 +6th-semester - Java programming, Numerical Methods (C++), Software Architecture (C++ and QT), Transact-SQL, Web-Programming (HTML, CSS, JSON, C and NodeJS, MongoDB).
 
-"Don't worry if something doesn't work. If everything worked, you'd be fired." @Mosher’s Law of Software Engineering
+*"Don't worry if something doesn't work. If everything worked, you'd be fired."*\n\t\t @Mosher’s Law of Software Engineering
