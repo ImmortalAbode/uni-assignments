@@ -1,0 +1,172 @@
+﻿/*Блок тела*/
+body {
+    background-color: #c1def8;
+    margin: 0px;
+}
+
+/*Блок заголовка*/
+.headbar {
+    width: 100%;
+    background-color: #064278;
+    color: #a3aadc;
+    padding: 20px;
+    display: flex;
+}
+    /*Таблица*/
+    .headbar table {
+        width: 20%;
+        background-color: #8e9af1;
+        text-align: center;
+        margin: 10px;
+        border-collapse: collapse;
+        border-radius: 20px;
+        box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.5);
+    }
+    /*Столбцы*/
+    .headbar td {
+        font-family: 'Arial', sans-serif;
+        font-style: normal;
+        font-size: 20px;
+        color: #210a61;
+    }
+
+    /*Стиль заголовка в блоке заголовка*/
+    .headbar h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        margin-left: 200px;
+        margin-right: auto;
+        margin-top: 35px;
+        margin-bottom: 10px;
+    }
+
+/*Блок-основа*/
+.back {
+    display: flex;
+    padding-bottom: 0px;
+}
+
+    /*Красивая панелька слева от основного содержимого*/
+    .back .sidebar {
+        background-color: #064278;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 10px rgba(100, 100, 100, 0.7);
+        margin: 20px 20px 0 20px;
+    }
+
+    /*Блок с основным содержимым*/
+    .back .content {
+        width: 100%;
+        background-color: #abc4f3;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px 20px 0 10px;
+        font-family: Arial;
+    }
+        /*Основной текст задачи*/
+        .back .content .main_text {
+            padding-left: 20px;
+            font-weight: bold;
+            color: #210a61;
+        }
+        /*Текст задачи*/
+        .back .content .task_text {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            font-style: italic;
+            text-align: justify;
+            color: #210a61;
+        }
+        /*Блок с процессорными элементами*/
+        .back .content .processor {
+            width: 20%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px 20px 0 20px;
+            font-family: Arial;
+            background-color: #abc4f3;
+        }
+
+            .back .content .processor input {
+                width: calc(100% - 20px);
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                padding: 10px;
+                color: #000000;
+                font-size: 18px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+                .back .content .processor input[type="button"], .back .content .processor button {
+                    width: 100%;
+                    border-radius: 10px;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                    padding: 10px;
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    font-size: 12px;
+                    font-style: italic;
+                    text-align: justify;
+                    background-color: #7d81c7;
+                    border: 4px groove #618eda;
+                    cursor: pointer;
+                    color: #ffffff;
+                    text-align: center;
+                }
+
+                    .back .content .processor input[type="button"]:hover, .back .content .processor button:hover {
+                        background-color: #4972cf;
+                        color: #8e9af1;
+                    }
+
+            .back .content .processor .info {
+                font-size: 13px;
+                font-style: italic;
+                text-align: justify;
+                padding-bottom: 5px;
+            }
+
+        /*Блок с результатми процесса*/
+        .back .content .result {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px 20px 0 20px;
+            font-family: Arial;
+            background-color: #abc4f3;
+        }
+
+            .back .content .result p {
+                width: 40%;
+                padding: 10px;
+                margin-top: 0;
+                font-size: 14px;
+                font-style: italic;
+                text-align: justify;
+            }
+
+        .back .content #required_days {
+            width: auto;
+            height: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            color: #000000;
+            background-color: white;
+            font-size: 18px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+
+/*Блок с информацией об авторе*/
+footer {
+    text-align: center;
+    padding: 2px;
+    background-color: #f2f2f2;
+}

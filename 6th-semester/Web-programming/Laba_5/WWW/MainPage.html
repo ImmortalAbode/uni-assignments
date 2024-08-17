@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--Мета-данные сайта-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Горшков Андрей Олегович" />
+    <meta name="description" content="Веб-программирование, Лабораторная работа №5, Главная страница" />
+    <meta name="keywords" content="URL, Позиционирование" />
+    <title>Главная страница</title>
+    <!--Раскрашивание с помощью CSS-стилей. Подключение файла стилей-->
+    <link rel="stylesheet" type="text/css" href="CSS/StyleSheet.css" />
+    <script src="JS/JavaScript.js" type="text/javascript"></script>
+</head>
+<body onload="firstTask()">
+    <div class="headbar">
+        <h1>Лабораторная работа №5</h1>
+    </div>
+
+    <div class="back">
+        <!--График-->
+        <div class="fisrtTask">
+            <div class="graphBG" id="graph"></div>
+            <div class="graphBTNS">
+                <br /> <span>Масштабирование графика функции:</span><br /><br />
+                <button onclick="lower()">Увеличить масштаб</button>
+                <button onclick="upper()">Уменьшить масштаб</button>
+                <br /> <span>Смещение графика функции вправо и влево:</span><br /><br />
+                <button onclick="left()">Сместить влево</button>
+                <button onclick="right()">Сместить вправо</button>
+                <br /> <span>Смещение графика функции вверх и вниз:</span><br /><br />
+                <button onclick="down()">Сместить вниз</button>
+                <button onclick="up()">Сместить вверх</button>
+                <br /> <span id="info"></span><br /><br />
+            </div>
+        </div>
+        <!--Покер-->
+        <div class="secondTask">
+            <br /><span>Введите раздачу покерных карт: </span><br /><br />
+            <div class="container">
+                <label for="rank">
+                    Номинал:
+                    <select id="rank">
+                        <option value="двойка">Двойка</option>
+                        <option value="тройка">Тройка</option>
+                        <option value="четверка">Четверка</option>
+                        <option value="пятерка">Пятерка</option>
+                        <option value="шестерка">Шестерка</option>
+                        <option value="семерка">Семерка</option>
+                        <option value="восьмерка">Восьмерка</option>
+                        <option value="десятка">Десятка</option>
+                        <option value="валет">Валет</option>
+                        <option value="дама">Дама</option>
+                        <option value="король">Король</option>
+                        <option value="туз">Туз</option>
+                    </select>
+                </label>
+                <label for="suit">
+                    Масть:
+                    <select id="suit">
+                        <option value="пики">Пики</option>
+                        <option value="черви">Черви</option>
+                        <option value="трефы">Трефы</option>
+                        <option value="бубны">Бубны</option>
+                    </select>
+                </label>
+            </div>
+            <button onclick="addCard()">Добавить карту</button> <br /> <br />
+            <button onclick="clearHand()">Очистить раздачу</button> <br /> <br />
+            <div class ="currentHand">
+                <span>Текущая раздача:</span>
+                <span id="handList"></span>
+            </div>
+            <button onclick="determineHandType()">Есть ли каре?</button>
+            <div id="task2Res"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Горшков Андрей Олегович, группа 4312<br />Казань, 2024</p>
+    </footer>
+</body>
+</html>
+

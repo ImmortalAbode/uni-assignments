@@ -1,0 +1,98 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #d0ddf5;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+#header {
+    text-align: center;
+    padding: 10px;
+    background-color: #8894E4;
+    color: #fff;
+}
+#main-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#about-me {
+    width: 55%;
+    text-align: justify;
+}
+
+#additional {
+    width: 20%;
+}
+
+    #additional ul {
+        margin: 150px auto;
+        list-style-type: circle;
+    }
+
+#my-photo {
+    width: 20%;
+    text-align: center;
+}
+
+    #my-photo img {
+        width: 150px;
+        height: 150px;
+        box-shadow: 5px 5px 10px #979191
+    }
+
+    #my-photo p {
+        font-size: 12px;
+        text-align: initial;
+    }
+
+#links {
+    color: blue;
+    font-size: 14px;
+}
+    #links:hover {
+        color: darkblue;
+    }
+
+    #links:active{
+        color: red;
+    }
+
+    #links:visited{
+        color:#b200ff
+    }
+
+h3 {
+    text-align: center;
+}
+
+span {
+    font-family: 'Comic Sans MS';
+    font-size: 14px;
+}
+
+blockquote {
+    text-align: right;
+    font-style: italic;
+    font-size: 12px;
+    margin: 20px;
+}
+
+hr {
+    border: 1px solid #ddd;
+    margin: 5px 0;
+}
+
+p {
+    margin: 10px 0px 10px;
+    text-indent: 20px;
+}
+

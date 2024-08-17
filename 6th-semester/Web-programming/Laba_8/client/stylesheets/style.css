@@ -1,0 +1,193 @@
+/*Блок тела*/
+body {
+    background: #97cee4;
+    margin: 0;
+}
+
+/*Блок заголовка*/
+.headbar {
+    width: 100%;
+    background-color: #6983ce;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+    .headbar h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+    }
+
+/* Стили для вкладок */
+.tabs a span {
+    display: inline-block;
+    border-radius: 50px 50px 0 0;
+    min-width: 100px;
+    margin: 10px 10px 5px 5px;
+    text-align: center;
+    background: #a5bbe3;
+    transition: background-color 0.3s ease;
+    padding: 5px 10px 5px 10px;
+    color: black;
+}
+
+    .tabs a span.active {
+        background-color: darkslateblue;
+        color: #fff;
+    }
+
+
+.content {
+    margin: 5px;
+}
+
+/* Стили для блока c отдельной библиотечной записью*/
+.recordClass {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #5f5ea7;
+    margin-bottom: 20px;
+}
+
+    .recordClass h4 {
+        padding: 10px;
+        background-color: #9496cc;
+        color: black;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .recordClass p {
+        background: #47396f;
+        padding: 10px;
+        color: #8a8ed0;
+        margin-bottom: 5px;
+    }
+
+    .recordClass ul {
+        padding: 0 0 0 20px;
+    }
+
+        .recordClass ul li {
+            list-style-type: square;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+/*Стили для блока с группировкой по дате возврата и ФИО держателя, а также авторам*/
+.authorClass, .returnDatePersonClass {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #9496cc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+    .authorClass p, .returnDatePersonClass p {
+        font-size: 18px;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    .authorClass h4, .returnDatePersonClass h4 {
+        background-color: #5f5ea7;
+        color: black;
+    }
+
+/*АДМИНИСТРИРОВАНИЕ*/
+/* Стили для формы ввода данных */
+#dataForm {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 300px;
+}
+
+    #dataForm label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    #dataForm input[type="text"],
+    #dataForm input[type="date"],
+    #dataForm input[type="number"] {
+        width: calc(100% - 10px);
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    #dataForm button {
+        padding: 8px 15px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+        #dataForm button:hover {
+            background-color: #0056b3;
+        }
+
+/*Текст 'Записи в базе данных'*/
+h2 {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+/* Стили для таблицы */
+#dataTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    #dataTable th,
+    #dataTable td {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #dataTable th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    #dataTable td {
+        text-align: left;
+    }
+
+    #dataTable .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+        #dataTable .btn.editBtn {
+            background-color: #28a745;
+        }
+
+        #dataTable .btn.deleteBtn {
+            background-color: #dc3545;
+        }
+
+        #dataTable .btn:hover {
+            background-color: #0056b3;
+        }
+
+/*Блок с информацией об авторе*/
+footer {
+    text-align: center;
+    padding: 2px;
+    color: black;
+    background-color: #6983ce;
+}

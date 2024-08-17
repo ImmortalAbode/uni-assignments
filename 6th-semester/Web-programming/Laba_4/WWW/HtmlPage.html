@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--Мета-данные сайта-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Горшков Андрей Олегович" />
+    <meta name="description" content="Веб-программирование, Лабораторная работа №4, Главная страница" />
+    <meta name="keywords" content="События JavaScript. Встроенные объекты" />
+    <title>Главная страница</title>
+    <!--Раскрашивание с помощью CSS-стилей. Подключение файла стилей-->
+    <link rel="stylesheet" type="text/css" href="CSS/StyleSheet.css" />
+    <script src="js/JavaScript.js" type="text/javascript"></script>
+</head>
+<body onload="dateCalculator()">
+    <!--Задание П.7-->
+    <div class="headbar">
+        <table>
+            <tr>
+                <td id="week_day"></td>
+            </tr>
+            <tr>
+                <td id="day_month"></td>
+            </tr>
+            <tr>
+                <td id="year"></td>
+            </tr>
+        </table>
+        <div><h1>Лабораторная работа №4</h1></div>
+    </div>
+    <!--Задание П.1-->
+    <div class="back">
+        <div class="sidebar"></div>
+        <div class="content">
+            <span class="main_text">Выполнить задание:</span><br />
+            <span class="task_text">
+                Дано натуральное число N. Получить новое число M, которое образуется из числа N 
+                путем замены последней цифры на значение наименьшей цифры в записи числа N.
+            </span>
+            <div class="back">
+                <div class="processor">
+                    <input type="text" id="numberN" placeholder="N" />
+                    <input type="button" value="Рассчитать" onclick="executeNumber();" />
+                </div>
+                <div class="result">
+                    <h2 id="result_text"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Задание П.8-->
+    <div class="back">
+        <div class="sidebar"></div>
+        <div class="content">
+            <span class="main_text">Выполнить задание:</span><br />
+            <span class="task_text">
+                Вывести количество дней, оставшихся до сессии (до 10 июня 2024 года).
+            </span> <br /> <br />
+            <p id="required_days"></p>
+        </div>
+    </div>
+    <!--Задание П.9-->
+    <div class="back">
+        <div class="sidebar"></div>
+        <div class="content">
+            <span class="main_text">Выполнить задание:</span><br />
+            <span class="task_text">
+                Нужно разместить кнопку, при щелчке на которую следует запрашивать памятную для вас дату и ниже
+                (или сбоку) выводить в абзаце количество дней, которые минуло после неё (дата должна быть такой, что
+                количество дней превосходит 365).
+            </span>
+            <div class="back">
+                <div class="processor">
+                    <input type="button" value="Введите памятную для Вас дату" onclick="getMemorableDate()" />
+                </div>
+                <div class="result">
+                    <p id="memorable_paragraph">Памятная дата</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Задание П.10-->
+    <div class="back">
+        <div class="sidebar"></div>
+        <div class="content">
+            <span class="main_text">Выполнить задание:</span><br />
+            <span class="task_text">
+                Найти и вывести сумму заданного количества членов числовой последовательности: (n - 2)<sup>n</sup>.
+                Задание номера первого ее члена и количества слагаемых последующих членов осуществлять поочередным запросом из двух диалоговых окон.
+                В код кнопки для вычисления суммы определённого числа членов последовательности ввести проверку на корректность введённых данных. При этом
+                для проверки корректности ввода данных запрещено использовать функцию: parseFloat().
+            </span>
+            <div class="back">
+                <div class="processor">
+                    <div class="info">Введите номер первого члена и количество слагаемых последующих членов через пробел:</div>
+
+                    <input type="button" id="dialog" value="Начать задачу" onclick="enteredData();" /><br /><br />
+                    <input type="text" id="first_term" placeholder="Первый член" readonly=readonly /><br /><br />
+                    <input type="text" id="count_term" placeholder="Количество членов" readonly=readonly /><br /><br />
+                    <button type="button" onclick="calculateSum();">Вычислить сумму</button>
+                </div>
+                <div class="result">
+                    <h2 id="calculated_sum"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; Горшков Андрей Олегович, группа 4312<br />Казань, 2024</p>
+    </footer>
+</body>
+</html>

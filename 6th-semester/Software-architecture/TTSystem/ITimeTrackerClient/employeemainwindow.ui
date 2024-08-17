@@ -1,0 +1,2132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EmployeeMainWindow</class>
+ <widget class="QMainWindow" name="EmployeeMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>878</width>
+    <height>533</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>878</width>
+    <height>533</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Сотрудник</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">EmployeeMainWindow
+{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(58, 65, 82, 255), stop:0.3 rgba(47, 53, 66, 255), stop:0.7 rgba(47, 53, 66, 255), stop:1 rgba(58, 65, 82, 255));
+}
+QMenuBar {
+    background-color: #374152;
+    color: #FFFFFF;
+}
+QMenuBar::item {
+    background-color: rgb(42, 49, 62);
+    color: #FFFFFF;
+    padding: 4px 8px;
+}
+
+QMenuBar::item:selected {
+    background-color: rgb(34, 69, 103);
+}
+
+QMenuBar::item:pressed {
+    background-color: rgb(83, 107, 138);
+}
+
+QStatusBar {
+    background-color: #333333;
+    color: #ffffff;
+    border-top: 1px solid #666666;
+	font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QStackedWidget" name="stackedWidget_emp_funcs">
+      <property name="font">
+       <font>
+        <family>Times New Roman</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#stackedWidget_emp_funcs QWidget#common_statistic {
+    background-color: rgba(192, 192, 192, 100);
+}
+
+#stackedWidget_emp_funcs QWidget#reg_time {
+    background-color: rgba(192, 192, 192, 100); 
+}
+
+#stackedWidget_emp_funcs QWidget#work_graf {
+    background-color: rgba(192, 192, 192, 100); 
+}
+
+#stackedWidget_emp_funcs QWidget#exception {
+    background-color: rgba(192, 192, 192, 100); 
+}
+
+#stackedWidget_emp_funcs QWidget#work {
+    background-color: rgba(192, 192, 192, 100); 
+}
+
+#stackedWidget_emp_funcs QWidget#sent_queries {
+    background-color: rgba(192, 192, 192, 100); 
+}
+
+#stackedWidget_emp_funcs QWidget#got_queries {
+    background-color: rgba(192, 192, 192, 100); 
+}
+
+#stackedWidget_emp_funcs QWidget#users {
+    background-color: rgba(192, 192, 192, 100); 
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>4</number>
+      </property>
+      <widget class="QWidget" name="common_statistic">
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0" colspan="3">
+         <widget class="QLabel" name="label_19">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>ЛИЧНЫЙ КАБИНЕТ</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3">
+         <widget class="QLabel" name="label_24">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(30, 255, 150)</string>
+          </property>
+          <property name="text">
+           <string>Учетные данные</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QTableView" name="tableView_credentials">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>154</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTableView {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: #333; /* Цвет текста */
+    gridline-color: #ccc; /* Цвет линий сетки */
+}
+
+QTableView::item:selected {
+    background-color: #a0d9ff; /* Цвет фона для выбранной ячейки */
+    color: #333; /* Цвет текста для выбранной ячейки */
+}
+
+QHeaderView::section {
+    background-color: #4c7c99; /* Цвет фона заголовков столбцов */
+    color: white; /* Цвет текста заголовков столбцов */
+    padding: 4px; /* Отступы внутри заголовков столбцов */
+    border: 1px solid #2e5066; /* Граница вокруг заголовков столбцов */
+}
+
+QTableView::horizontalHeader {
+    background-color: #4c7c99; /* Цвет фона горизонтального заголовка */
+    color: white; /* Цвет текста горизонтального заголовка */
+}
+
+QTableView::verticalHeader {
+    background-color: #4c7c99; /* Цвет фона вертикального заголовка */
+    color: white; /* Цвет текста вертикального заголовка */
+}
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="pushButton_hideCredentials">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>74</width>
+            <height>151</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Скрыть</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="3">
+         <widget class="QLabel" name="label_25">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(30, 255, 150)</string>
+          </property>
+          <property name="text">
+           <string>Суммарный учет времени</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="3">
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_20">
+            <property name="font">
+             <font>
+              <family>Times New Roman</family>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 116, 89);
+color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Опоздания</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_21">
+            <property name="font">
+             <font>
+              <family>Times New Roman</family>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 116, 89);
+color: rgb(255, 255, 255);color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Недоработки</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_notEnoughWork">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 116, 89);
+color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="label_workTime">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 116, 89);
+color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_lateness">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 116, 89);
+color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="label_26">
+            <property name="font">
+             <font>
+              <family>Times New Roman</family>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 116, 89);
+color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Время на работе</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_22">
+            <property name="font">
+             <font>
+              <family>Times New Roman</family>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 116, 89);
+color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Переработки</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="label_enoughWork">
+            <property name="minimumSize">
+             <size>
+              <width>192</width>
+              <height>31</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 116, 89);
+color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_27">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(30, 255, 150)</string>
+          </property>
+          <property name="text">
+           <string>Выполненные проектные задачи</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1" colspan="2">
+         <widget class="QLabel" name="label_28">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 0, 4)</string>
+          </property>
+          <property name="text">
+           <string>Нужно выполнить проектные задачи</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QTableView" name="tableView_completeProjectTasks">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>391</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Comic Sans MS</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTableView {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: #333; /* Цвет текста */
+    gridline-color: #ccc; /* Цвет линий сетки */
+}
+
+QTableView::item:selected {
+    background-color: #a0d9ff; /* Цвет фона для выбранной ячейки */
+    color: #333; /* Цвет текста для выбранной ячейки */
+}
+
+QHeaderView::section {
+    background-color: #4c7c99; /* Цвет фона заголовков столбцов */
+    color: white; /* Цвет текста заголовков столбцов */
+    padding: 4px; /* Отступы внутри заголовков столбцов */
+    border: 1px solid #2e5066; /* Граница вокруг заголовков столбцов */
+}
+
+QTableView::horizontalHeader {
+    background-color: #4c7c99; /* Цвет фона горизонтального заголовка */
+    color: white; /* Цвет текста горизонтального заголовка */
+}
+
+QTableView::verticalHeader {
+    background-color: #4c7c99; /* Цвет фона вертикального заголовка */
+    color: white; /* Цвет текста вертикального заголовка */
+}
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1" colspan="2">
+         <widget class="QTableView" name="tableView_unfinishedProjectTasks">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>391</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Comic Sans MS</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTableView {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: #333; /* Цвет текста */
+    gridline-color: #ccc; /* Цвет линий сетки */
+}
+
+QTableView::item:selected {
+    background-color: #a0d9ff; /* Цвет фона для выбранной ячейки */
+    color: #333; /* Цвет текста для выбранной ячейки */
+}
+
+QHeaderView::section {
+    background-color: #4c7c99; /* Цвет фона заголовков столбцов */
+    color: white; /* Цвет текста заголовков столбцов */
+    padding: 4px; /* Отступы внутри заголовков столбцов */
+    border: 1px solid #2e5066; /* Граница вокруг заголовков столбцов */
+}
+
+QTableView::horizontalHeader {
+    background-color: #4c7c99; /* Цвет фона горизонтального заголовка */
+    color: white; /* Цвет текста горизонтального заголовка */
+}
+
+QTableView::verticalHeader {
+    background-color: #4c7c99; /* Цвет фона вертикального заголовка */
+    color: white; /* Цвет текста вертикального заголовка */
+}
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="reg_time">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="3" column="0">
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>13</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="6" column="0">
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>13</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_finishLunchBreak">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Закончить обеденный перерыв</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="QTextEdit" name="textEdit_regTimeInfo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTextEdit {
+    background-color: rgb(177, 177, 177);
+    color: black;
+    text-align: justify;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="label_16">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Регистрация времени для этих событий не является нарушением</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="pushButton_beginPersonalNeeded">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Начать отсутствие по личной нужде</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButton_beginLunchBreak">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Начать обеденный перерыв</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <spacer name="verticalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>13</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButton_beginMeeting">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Начать онлайн/оффлайн совещание</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pushButton_finishMeeting">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Закончить онлайн/оффлайн совещание</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QPushButton" name="pushButton_finishPersonalNeeded">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Закончить отсутствие по личной нужде</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButton_beginAbsenceDueToWork">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Начать отсутствие по работе</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>13</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="pushButton_finishAbsenceDueToWork">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Закончить отсутствие по работе</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="work_graf">
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Ваш текущий рабочий график и рабочий график Ваших коллег</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableView" name="tableView_workGraf">
+          <property name="styleSheet">
+           <string notr="true">QTableView {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: #333; /* Цвет текста */
+    gridline-color: #ccc; /* Цвет линий сетки */
+}
+
+QTableView::item:selected {
+    background-color: #a0d9ff; /* Цвет фона для выбранной ячейки */
+    color: #333; /* Цвет текста для выбранной ячейки */
+}
+
+QHeaderView::section {
+    background-color: #4c7c99; /* Цвет фона заголовков столбцов */
+    color: white; /* Цвет текста заголовков столбцов */
+    padding: 4px; /* Отступы внутри заголовков столбцов */
+    border: 1px solid #2e5066; /* Граница вокруг заголовков столбцов */
+}
+
+QTableView::horizontalHeader {
+    background-color: #4c7c99; /* Цвет фона горизонтального заголовка */
+    color: white; /* Цвет текста горизонтального заголовка */
+}
+
+QTableView::verticalHeader {
+    background-color: #4c7c99; /* Цвет фона вертикального заголовка */
+    color: white; /* Цвет текста вертикального заголовка */
+}
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="exception">
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Список Ваших исключительных ситуаций</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableView" name="tableView_anomalyTimeList">
+          <property name="styleSheet">
+           <string notr="true">QTableView {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: #333; /* Цвет текста */
+    gridline-color: #ccc; /* Цвет линий сетки */
+}
+
+QTableView::item:selected {
+    background-color: #a0d9ff; /* Цвет фона для выбранной ячейки */
+    color: #333; /* Цвет текста для выбранной ячейки */
+}
+
+QHeaderView::section {
+    background-color: #4c7c99; /* Цвет фона заголовков столбцов */
+    color: white; /* Цвет текста заголовков столбцов */
+    padding: 4px; /* Отступы внутри заголовков столбцов */
+    border: 1px solid #2e5066; /* Граница вокруг заголовков столбцов */
+}
+
+QTableView::horizontalHeader {
+    background-color: #4c7c99; /* Цвет фона горизонтального заголовка */
+    color: white; /* Цвет текста горизонтального заголовка */
+}
+
+QTableView::verticalHeader {
+    background-color: #4c7c99; /* Цвет фона вертикального заголовка */
+    color: white; /* Цвет текста вертикального заголовка */
+}
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="work">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QComboBox" name="comboBox_Projects">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/* Стили для выпадающего списка */
+QComboBox#projectComboBox QAbstractItemView {
+    border: 1px solid #ccc;
+    selection-background-color: #f3f3f3;
+}
+
+/* Стили для выбранного элемента */
+QComboBox#projectComboBox::item:selected {
+    background-color: #f3f3f3;
+    color: #333;
+}
+
+/* Стили для невыбранного элемента */
+QComboBox#projectComboBox::item {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Стили для фона и границы */
+QComboBox#projectComboBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+    background-color: #fff;
+    color: #333;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Описание выбранного проекта</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="4">
+         <widget class="QLabel" name="label_9">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Описание выбранной проектной задачи</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" rowspan="3">
+         <widget class="QTextEdit" name="textEdit_selectProjDescr">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTextEdit {
+    background-color: rgb(177, 177, 177);
+    color: black;
+    text-align: justify;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" colspan="4">
+         <widget class="QTextEdit" name="textEdit_selectProjTaskDescr">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>2</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTextEdit {
+    background-color: rgb(177, 177, 177);
+    color: black;
+    text-align: justify;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QPushButton" name="pushButton_saveEmpNote">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Изменить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(203, 239, 173);</string>
+          </property>
+          <property name="text">
+           <string>Прогресс выполнения проекта:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1" rowspan="2" colspan="2">
+         <widget class="QPushButton" name="pushButton_BeginTask">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Начать выполнение</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3" rowspan="2" colspan="2">
+         <widget class="QPushButton" name="pushButton_EndTask">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Закончить выполнение</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QProgressBar" name="progressBar_Project">
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QPushButton" name="pushButton_updateProjData">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Обновить данные</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1" colspan="4">
+         <widget class="QPushButton" name="pushButton_readyTask">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Отправить запрос о проверке готовности задачи</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" colspan="4">
+         <widget class="QComboBox" name="comboBox_ProjectTasks">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" colspan="3">
+         <widget class="QLabel" name="label_11">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Ваши заметки</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" colspan="4">
+         <widget class="QTextEdit" name="textEdit_empNotes">
+          <property name="cursor" stdset="0">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTextEdit {
+    background-color: rgb(177, 177, 177);
+    color: black;
+    text-align: justify;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="sent_queries">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="2" column="0">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>160</width>
+            <height>328</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="0">
+         <widget class="QComboBox" name="comboBox_requestCategoriesForSend">
+          <property name="minimumSize">
+           <size>
+            <width>241</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>241</width>
+            <height>31</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/* Стили для самого комбобокса */
+QComboBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 4px; /* Уменьшает внутренние отступы */
+    background-color: #E0E0E0;
+    color: #333;
+    min-height: 10px;
+}
+
+/* Стили для выпадающего списка */
+QComboBox QAbstractItemView {
+    border: 1px solid #ccc;
+    background-color: #E0E0E0;
+}
+
+/* Стили для выбранного элемента в выпадающем списке */
+QComboBox QAbstractItemView::item:selected {
+    background-color: rgb(177, 177, 177); /* Устанавливает цвет фона для выбранного элемента */
+    color: #333;
+}
+
+/* Стили для невыбранных элементов в выпадающем списке */
+QComboBox QAbstractItemView::item {
+    background-color: #E0E0E0;
+    color: #333;
+    padding: 2px; /* Уменьшает внутренние отступы для элементов */
+    min-height: 15px; /* Устанавливает минимальную высоту для элементов */
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="minimumSize">
+           <size>
+            <width>241</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>241</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Выберите тип запроса</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" rowspan="3">
+         <widget class="QTextEdit" name="textEdit_sendQuery">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTextEdit {
+    background-color: rgb(177, 177, 177);
+    color: black;
+    text-align: justify;
+}
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_8">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Объясните причину и содержание вашего запроса</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_send">
+          <property name="minimumSize">
+           <size>
+            <width>241</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>241</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Отправить запрос</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="got_queries">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="minimumSize">
+           <size>
+            <width>241</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>241</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Выберите тип запроса</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_12">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Список Ваших запросов и ответы на них</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QComboBox" name="comboBox_requestCategoriesForCheck">
+          <property name="minimumSize">
+           <size>
+            <width>241</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>241</width>
+            <height>31</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/* Стили для самого комбобокса */
+QComboBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 4px; /* Уменьшает внутренние отступы */
+    background-color: #E0E0E0;
+    color: #333;
+    min-height: 10px;
+}
+
+/* Стили для выпадающего списка */
+QComboBox QAbstractItemView {
+    border: 1px solid #ccc;
+    background-color: #E0E0E0;
+}
+
+/* Стили для выбранного элемента в выпадающем списке */
+QComboBox QAbstractItemView::item:selected {
+    background-color: rgb(177, 177, 177); /* Устанавливает цвет фона для выбранного элемента */
+    color: #333;
+}
+
+/* Стили для невыбранных элементов в выпадающем списке */
+QComboBox QAbstractItemView::item {
+    background-color: #E0E0E0;
+    color: #333;
+    padding: 2px; /* Уменьшает внутренние отступы для элементов */
+    min-height: 15px; /* Устанавливает минимальную высоту для элементов */
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" rowspan="3">
+         <widget class="QTableView" name="tableView_employeeRequestsData">
+          <property name="styleSheet">
+           <string notr="true">QTableView {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: #333; /* Цвет текста */
+    gridline-color: #ccc; /* Цвет линий сетки */
+}
+
+QTableView::item:selected {
+    background-color: #a0d9ff; /* Цвет фона для выбранной ячейки */
+    color: #333; /* Цвет текста для выбранной ячейки */
+}
+
+QHeaderView::section {
+    background-color: #4c7c99; /* Цвет фона заголовков столбцов */
+    color: white; /* Цвет текста заголовков столбцов */
+    padding: 4px; /* Отступы внутри заголовков столбцов */
+    border: 1px solid #2e5066; /* Граница вокруг заголовков столбцов */
+}
+
+QTableView::horizontalHeader {
+    background-color: #4c7c99; /* Цвет фона горизонтального заголовка */
+    color: white; /* Цвет текста горизонтального заголовка */
+}
+
+QTableView::verticalHeader {
+    background-color: #4c7c99; /* Цвет фона вертикального заголовка */
+    color: white; /* Цвет текста вертикального заголовка */
+}
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>160</width>
+            <height>329</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_updateEmpRequestsData">
+          <property name="minimumSize">
+           <size>
+            <width>241</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>241</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Обновить данные</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="users">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Список сотрудников, являющихся Вашими коллегами, и назаначенных им проектных задач</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableView" name="tableView_employeeList">
+          <property name="styleSheet">
+           <string notr="true">QTableView {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: #333; /* Цвет текста */
+    gridline-color: #ccc; /* Цвет линий сетки */
+}
+
+QTableView::item:selected {
+    background-color: #a0d9ff; /* Цвет фона для выбранной ячейки */
+    color: #333; /* Цвет текста для выбранной ячейки */
+}
+
+QHeaderView::section {
+    background-color: #4c7c99; /* Цвет фона заголовков столбцов */
+    color: white; /* Цвет текста заголовков столбцов */
+    padding: 4px; /* Отступы внутри заголовков столбцов */
+    border: 1px solid #2e5066; /* Граница вокруг заголовков столбцов */
+}
+
+QTableView::horizontalHeader {
+    background-color: #4c7c99; /* Цвет фона горизонтального заголовка */
+    color: white; /* Цвет текста горизонтального заголовка */
+}
+
+QTableView::verticalHeader {
+    background-color: #4c7c99; /* Цвет фона вертикального заголовка */
+    color: white; /* Цвет текста вертикального заголовка */
+}</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_updateEmpTableData">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    border: 2px solid #A0A0A0;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #CCCCCC;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Обновить данные</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>878</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menu_personal">
+    <property name="title">
+     <string>Личный кабинет</string>
+    </property>
+    <addaction name="action_common_statistic"/>
+    <addaction name="separator"/>
+    <addaction name="action_reg_time"/>
+    <addaction name="action_work_graf"/>
+    <addaction name="separator"/>
+    <addaction name="action_exception"/>
+   </widget>
+   <widget class="QMenu" name="menu_prodjects_tasks">
+    <property name="title">
+     <string>Проекты и задачи</string>
+    </property>
+    <addaction name="action_work"/>
+   </widget>
+   <widget class="QMenu" name="menu_queries_admins">
+    <property name="title">
+     <string>Запросы администраторам</string>
+    </property>
+    <addaction name="action_sent_queries"/>
+    <addaction name="action_got_queries"/>
+   </widget>
+   <widget class="QMenu" name="menu_users">
+    <property name="title">
+     <string>Пользователи системы</string>
+    </property>
+    <addaction name="action_users"/>
+   </widget>
+   <widget class="QMenu" name="menu_exit">
+    <property name="title">
+     <string>Выход</string>
+    </property>
+    <addaction name="action_exit"/>
+   </widget>
+   <addaction name="menu_personal"/>
+   <addaction name="menu_prodjects_tasks"/>
+   <addaction name="menu_queries_admins"/>
+   <addaction name="menu_users"/>
+   <addaction name="menu_exit"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_common_statistic"/>
+   <addaction name="separator"/>
+   <addaction name="action_reg_time"/>
+   <addaction name="action_work_graf"/>
+   <addaction name="action_exception"/>
+   <addaction name="separator"/>
+   <addaction name="action_work"/>
+   <addaction name="separator"/>
+   <addaction name="action_sent_queries"/>
+   <addaction name="action_got_queries"/>
+   <addaction name="separator"/>
+   <addaction name="action_users"/>
+   <addaction name="separator"/>
+   <addaction name="action_exit"/>
+   <addaction name="separator"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar_emp"/>
+  <action name="action_common_statistic">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_common_statistic.png</normaloff>:/resources/images/employee/emp_common_statistic.png</iconset>
+   </property>
+   <property name="text">
+    <string>Общая статистика</string>
+   </property>
+   <property name="toolTip">
+    <string>Общая статистика</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+   <property name="priority">
+    <enum>QAction::NormalPriority</enum>
+   </property>
+  </action>
+  <action name="action_reg_time">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_reg_time.png</normaloff>:/resources/images/employee/emp_reg_time.png</iconset>
+   </property>
+   <property name="text">
+    <string>Регистрация времени</string>
+   </property>
+   <property name="toolTip">
+    <string>Регистрация времени</string>
+   </property>
+  </action>
+  <action name="action_work_graf">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_work_graf.png</normaloff>:/resources/images/employee/emp_work_graf.png</iconset>
+   </property>
+   <property name="text">
+    <string>Рабочий график</string>
+   </property>
+  </action>
+  <action name="action_exception">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_exception.png</normaloff>
+     <normalon>images/employee/emp_exception.png</normalon>:/resources/images/employee/emp_exception.png</iconset>
+   </property>
+   <property name="text">
+    <string>Исключительные ситуации</string>
+   </property>
+  </action>
+  <action name="action_sent_queries">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_send_query.png</normaloff>
+     <normalon>images/employee/emp_send_query.png</normalon>:/resources/images/employee/emp_send_query.png</iconset>
+   </property>
+   <property name="text">
+    <string>Отправленные запросы</string>
+   </property>
+  </action>
+  <action name="action_got_queries">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_got_query.png</normaloff>
+     <normalon>images/employee/emp_got_query.png</normalon>:/resources/images/employee/emp_got_query.png</iconset>
+   </property>
+   <property name="text">
+    <string>Полученные ответы</string>
+   </property>
+  </action>
+  <action name="action_work">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_project_task.png</normaloff>
+     <normalon>images/employee/emp_project_task.png</normalon>:/resources/images/employee/emp_project_task.png</iconset>
+   </property>
+   <property name="text">
+    <string>Начать работу</string>
+   </property>
+  </action>
+  <action name="action_users">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_users.png</normaloff>
+     <normalon>images/employee/emp_users.png</normalon>:/resources/images/employee/emp_users.png</iconset>
+   </property>
+   <property name="text">
+    <string>Просмотр активных пользователей</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/resources/images/employee/emp_exit.png</normaloff>
+     <normalon>images/employee/emp_exit.png</normalon>:/resources/images/employee/emp_exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Выйти из системы</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

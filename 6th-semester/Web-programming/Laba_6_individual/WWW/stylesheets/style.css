@@ -1,0 +1,146 @@
+﻿/*Блок тела*/
+body {
+    background: #97cee4;
+    margin: 0;
+}
+
+/*Блок заголовка*/
+.headbar {
+    width: 100%;
+    background-color: #6983ce;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+    .headbar h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+    }
+
+/* Стили для вкладок */
+.tabs a span {
+    display: inline-block;
+    border-radius: 50px 50px 0 0;
+    min-width: 100px;
+    margin: 10px 10px 5px 5px;
+    text-align: center;
+    background: #a5bbe3;
+    transition: background-color 0.3s ease;
+    padding: 5px 10px 5px 10px;
+    color: black;
+}
+
+    .tabs a span.active {
+        background-color: darkslateblue;
+        color: #fff;
+    }
+
+
+.content {
+    margin: 5px;
+}
+/*Стили для добавление новой записи библиотеки*/
+.addNewData {
+    padding: 5px;
+}
+
+    .addNewData p {
+        display: inline-block;
+        padding: 15px;
+        margin-bottom: 0px;
+        border-radius: 20px 20px 0px 0px;
+        background: #88a1c7;
+        color: black;
+    }
+
+    .addNewData input {
+        display: block;
+        min-width: 200px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 2px solid #6D98AB;
+        background: #f2f2f2;
+        font-size: 14px;
+    }
+
+    .addNewData button {
+        border: 2px solid #040d76;
+        background: #54bae2;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 8px;
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .addNewData button:hover {
+            background-color: #678bbc;
+        }
+
+        .addNewData button:active {
+            background-color: #3f4bad;
+        }
+
+/* Стили для блока c отдельной библиотечной записью*/
+.recordClass {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #5f5ea7;
+    margin-bottom: 20px;
+}
+
+    .recordClass h4 {
+        padding: 10px;
+        background-color: #9496cc;
+        color: black;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .recordClass p {
+        background: #47396f;
+        padding: 10px;
+        color: #8a8ed0;
+        margin-bottom: 5px;
+    }
+
+    .recordClass ul {
+        padding: 0 0 0 20px;
+    }
+
+        .recordClass ul li {
+            list-style-type: square;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+/*Стили для блока с группировкой по дате возврата и ФИО держателя, а также авторам*/
+.authorClass, .returnDatePersonClass {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #9496cc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+    .authorClass p, .returnDatePersonClass p {
+        font-size: 18px;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    .authorClass h4, .returnDatePersonClass h4 {
+        background-color: #5f5ea7;
+        color: black;
+    }
+
+
+/*Блок с информацией об авторе*/
+footer {
+    text-align: center;
+    padding: 2px;
+    color: black;
+    background-color: #6983ce;
+}

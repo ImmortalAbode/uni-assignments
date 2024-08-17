@@ -1,0 +1,10 @@
+C:\Program Files\Java\jdk-21\bin\javac - компилятор в байт-код
+C:\Program Files\Java\jdk-21\bin\javac - исполнение java
+D:\KAI\Технологии программирования на платформе Java\laba\src\main\java - для запуска первой лабы из консоли
+
+ЛЕЧЕНИЕ:
+1. Кодировка работает некорректно, должна использоваться UTF-8 в самом NetBeans и WINDOWS (CRLF) у текстового файла.
+2. Отладочная кодировка для запуска файла из NetBeans закомменитрована (с ней не работает в консоли, без нее не работает в NetBeans).
+3. При запуске из консоли необходимо перейти в папку (для первой лабы) D:\KAI\Технологии программирования на платформе Java\laba\src\main\java.
+4. Затем запустить javac командой "C:\Program Files\Java\jdk-21\bin\javac" "D:\KAI\Технологии программирования на платформе Java\laba\src\main\java\gorshkovano\laba\Laba.java".
+5. После получения файла Laba.Class скомпилировать командой: "C:\Program Files\Java\jdk-21\bin\java" gorshkovano.laba.Laba -5 -5 -6 44 56 3 10 123 -4

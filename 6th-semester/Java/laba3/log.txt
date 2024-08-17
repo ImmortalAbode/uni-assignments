@@ -1,0 +1,63 @@
+Event I/O: File created successfully: D:\KAI\Технологии программирования на платформе Java\laba3\log.txt
+Event I/O: Enter the path of the log data file: log.txt
+Event I/O: Enter the path of the source data file: source.txt
+Event I/O: File created successfully: D:\KAI\Технологии программирования на платформе Java\laba3\source.txt
+Event O: Entered numbers: [1, -4, 3, -8, 10, 5, -1]
+Event O: Odd positive number found: 1
+Event O: Even negative number found: -4
+Event O: Odd positive number found: 3
+Event O: Even negative number found: -8
+Event O: Odd positive number found: 5
+Event O: Sum of even negatives: -12
+Event O: Sum of odd positives: 9
+
+/*New log to the same file:*/
+Event I/O: File created successfully: D:\KAI\Технологии программирования на платформе Java\laba3\log.txt
+Event I/O: Enter the path of the log data file: log.txt
+Event I/O: Enter the path of the source data file: source1.txt
+Event I/O: File created successfully: D:\KAI\Технологии программирования на платформе Java\laba3\source1.txt
+Event O: Error: Source data file is empty.
+Event O: File D:\KAI\Технологии программирования на платформе Java\laba3\source1.txt was deleted.
+Event O: Please enter the source data:
+Event O: Enter numbers. Type 'end' to finish:
+Event I: 1
+Event I: 3
+Event I: 5
+Event I: -2
+Event I: -4
+Event I: -6
+Event I: 6
+Event I: -9
+Event I: end
+Event O: Entered numbers: [1, 3, 5, -2, -4, -6, 6, -9]
+Event O: Odd positive number found: 1
+Event O: Odd positive number found: 3
+Event O: Odd positive number found: 5
+Event O: Even negative number found: -2
+Event O: Even negative number found: -4
+Event O: Even negative number found: -6
+Event O: Sum of even negatives: -12
+Event O: Sum of odd positives: 9
+
+/*New log to the same file:*/
+O: Enter the path of the log data file: log.txt
+O: File created successfully: D:\KAI\Технологии программирования на платформе Java\laba3\log.txt
+I/O: Enter the path of the source data file: src.txt
+I/O: File created successfully: D:\KAI\Технологии программирования на платформе Java\laba3\src.txt
+O: Error: Source data file is empty.
+O: File D:\KAI\Технологии программирования на платформе Java\laba3\src.txt was deleted.
+O: Please enter the source data:
+O: Enter numbers. Type 'end' to finish:
+
+/*New log to the same file:*/
+O: Enter the path of the log data file: log.txt
+O: File created successfully: D:\KAI\Технологии программирования на платформе Java\laba3\log.txt
+I/O: Enter the path of the source data file: src2.txt
+I/O: File created successfully: D:\KAI\Технологии программирования на платформе Java\laba3\src2.txt
+O: Entered numbers: [1, 2, -4, 500, 5000, -8, 3]
+O: Odd positive number found: 1
+O: Even negative number found: -4
+O: Even negative number found: -8
+O: Odd positive number found: 3
+O: Sum of even negatives: -12
+O: Sum of odd positives: 4

@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file>images/sign_up/eye-hide.png</file>
+        <file>images/sign_up/eye-seek.png</file>
+        <file>images/employee/emp_exit.png</file>
+        <file>images/employee/emp_personal.png</file>
+        <file>images/employee/emp_project_task.png</file>
+        <file>images/employee/emp_time.png</file>
+        <file>images/employee/emp_common_statistic.png</file>
+        <file>images/employee/emp_exception.png</file>
+        <file>images/employee/emp_got_query.png</file>
+        <file>images/employee/emp_send_query.png</file>
+        <file>images/employee/emp_users.png</file>
+        <file>images/admin/admin_add_emp.png</file>
+        <file>images/admin/admin_add_man.png</file>
+        <file>images/admin/admin_add_project.png</file>
+        <file>images/admin/admin_add_task.png</file>
+        <file>images/admin/admin_close_query.png</file>
+        <file>images/admin/admin_common_statistic.png</file>
+        <file>images/admin/admin_developers.png</file>
+        <file>images/admin/admin_exit.png</file>
+        <file>images/admin/admin_grafs.png</file>
+        <file>images/admin/admin_project_task.png</file>
+        <file>images/admin/admin_report.png</file>
+        <file>images/admin/admin_unprocessed_query.png</file>
+        <file>images/admin/admin_users.png</file>
+        <file>images/employee/emp_reg_time.png</file>
+        <file>images/employee/emp_work_graf.png</file>
+        <file>images/admin/admin_remove_change_emp.png</file>
+        <file>images/admin/admin_remove_change_man.png</file>
+        <file>images/admin/admin_remove_change_project.png</file>
+        <file>images/admin/admin_remove_change_task.png</file>
+    </qresource>
+</RCC>

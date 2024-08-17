@@ -1,0 +1,11 @@
+The server was started succesfully. Date and Time: 2024-03-28 10:37:52
+Client Client1 is conneceted.
+Client Client2 is conneceted.
+Received expression from client:
+1+1+1=
+Client Client2 is disconnected.
+
+Received expression from client:
+2+2+2=
+Client Client1 is disconnected.
+

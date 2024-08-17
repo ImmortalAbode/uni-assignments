@@ -1,0 +1,47 @@
+-------------------------------------|
+Сборка JAR-файла интерфейсных классов
+-------------------------------------|
+Сompute (в cmd):
+----------------
+D:
+cd D:\KAI\Технологии программирования на платформе Java\Test5_RMI\src\main\java
+javac compute\*.java
+"C:\Program Files\Java\jdk-21\bin\jar" cvf compute.jar compute\*.class
+
+----------------
+Client (в cmd)
+----------------
+D:
+cd D:\KAI\Технологии программирования на платформе Java\Test5_RMI\src\main\java
+javac client\*.java
+
+----------------
+Engine (в cmd)
+----------------
+D:
+cd D:\KAI\Технологии программирования на платформе Java\Test5_RMI\src\main\java
+javac engine\*.java
+
+
+
+
+Запуск rmiregistry
+------------------------------------------------------
+D:
+cd D:\KAI\Технологии программирования на платформе Java\Test5_RMI\src\main\java
+"C:\Program Files\Java\jdk-21\bin\rmiregistry"
+
+------------------------------------------------------
+Открываем новое окно cmd:
+------------------------------------------------------
+Запуск сервера:
+D:
+cd D:\KAI\Технологии программирования на платформе Java\Test5_RMI\src\main\java
+java -Djava.security.policy=server.policy engine.ComputeEngine
+------------------------------------------------------
+Открываем новое окно cmd:
+------------------------------------------------------
+Запуск клиента:
+D:
+cd D:\KAI\Технологии программирования на платформе Java\Test5_RMI\src\main\java
+java -Djava.security.policy=client.policy client.ComputePi localhost 4

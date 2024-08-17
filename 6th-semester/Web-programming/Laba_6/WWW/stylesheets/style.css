@@ -1,0 +1,66 @@
+﻿/*ДЛЯ ПРИМЕРОВ №1 и №2*/
+.tabs a span
+{
+    display: inline-block;
+    border-radius: 5px 5px 0 0;
+    width: 100px;
+    margin-right: 10px;
+    text-align: center;
+    background: #ddd;
+    padding: 5px;
+}
+
+    .tabs a span.active 
+    {
+        background: #eee;
+    }
+
+.content {
+    margin: 0px;
+    padding: 5px;
+    background: #eee;
+}
+
+    .content input {
+        display: inline-block;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        padding: 5px;
+        border-radius: 0px 0px 15px 15px;
+        border: 2px solid #cfcaca;
+        background: #eee;
+        font-size: 24px;
+    }
+
+    .content p {
+        display: block;
+        width: 100px;
+        padding: 10px;
+        margin: 10px;
+        margin-bottom: 0px;
+        border-radius: 15px 15px 0px 0px;
+        background: #cfcaca;
+    }
+
+    .content button {
+        border: 2px solid #cfcaca;
+        border-radius: 0px 15px 15px 0px;
+        background: #cfcaca;
+        font-size: 24px;
+        margin-left: 10px;
+    }
+
+    /*.content li:nth-child(even) {
+        background: lavender;
+    }
+
+    .content li:nth-child(odd) {
+        background: gainsboro;
+    }*/
+
+h3 
+{
+    padding: 10px;
+    padding-left: 25px;
+    background: #cfcaca;
+}

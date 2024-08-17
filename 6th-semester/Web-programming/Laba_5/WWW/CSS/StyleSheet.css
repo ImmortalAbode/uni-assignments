@@ -1,0 +1,195 @@
+﻿/*Блок тела*/
+body {
+    background-color: #a3d0eb;
+    margin: 0;
+}
+
+/*Блок заголовка*/
+.headbar {
+    background-color: #350aa4;
+    color: #a3d0eb;
+    padding: 10px;
+    margin: 10px;
+    margin-top: 80px;
+    text-align: center;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+    /*Стиль заголовка в блоке заголовка*/
+    .headbar h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        text-align: center;
+    }
+
+/*Основной блок*/
+.back {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+    /*Содержание части основного блока*/
+    .back .fisrtTask {
+        width: calc(60% - 10px);
+        background-color: #153370;
+        display: flex;
+        justify-content: space-between;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+        /*Настройка фона графика в части основного блока*/
+        .back .fisrtTask .graphBG {
+            margin: 10px;
+            width: 400px;
+            height: 500px;
+            background-color: white;
+        }
+
+        /*Область кнопок в части основного блока для графика*/
+        .back .fisrtTask .graphBTNS {
+            width: auto;
+            margin: 10px;
+        }
+
+        /*Надписи около кнопок*/
+        .back .fisrtTask span {
+            background-color: #a3d0eb;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            text-align: justify;
+        }
+
+        /*Любые кнопки внутри частей основного блока*/
+        .back .fisrtTask input[type="button"], .back .fisrtTask button {
+            width: calc(50% - 10px);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-style: italic;
+            text-align: justify;
+            background-color: #2d3088;
+            border: 4px groove #618eda;
+            cursor: pointer;
+            color: #ffffff;
+            text-align: center;
+        }
+
+            .back .fisrtTask input[type="button"]:hover, .back .fisrtTask button:hover {
+                background-color: #1a1b6b;
+            }
+
+            .back .fisrtTask input[type="button"]:active, .back .fisrtTask button:active {
+                border-color: #a3d0eb;
+            }
+    /*Содержание части основного блока*/
+    .back .secondTask {
+        width: calc(40% - 10px);
+        background-color: #153370;
+        justify-content: space-evenly;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+    /*Надписи около кнопок*/
+        .back .secondTask span {
+            margin: 10px;
+            background-color: #a3d0eb;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            text-align: justify;
+        }
+
+        .back .secondTask .container {
+            width: 40%;
+            display: flex;
+            justify-content: space-between;
+        }
+            .back .secondTask .container label {
+                width: auto;
+                margin: 0px 10px 20px 10px;
+                background-color: #a3d0eb;
+                color: black;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+                text-align: justify;
+                display: flex;
+                justify-content: space-around;
+            }
+
+        .back .secondTask select {
+            background-color: #26839f;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-style: italic;
+            text-align: justify;
+        }
+
+        .back .secondTask input[type="button"], .back .secondTask button {
+            margin-left: 40px;
+            width: calc(40% - 10px);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-style: italic;
+            text-align: justify;
+            background-color: #2d3088;
+            border: 4px groove #618eda;
+            cursor: pointer;
+            color: #ffffff;
+            text-align: center;
+        }
+
+            .back .secondTask input[type="button"]:hover, .back .secondTask button:hover {
+                background-color: #1a1b6b;
+            }
+
+            .back .secondTask input[type="button"]:active, .back .secondTask button:active {
+                border-color: #a3d0eb;
+            }
+
+        .back .secondTask .currentHand {
+            width: auto;
+            height: 150px;
+        }
+
+        .back .secondTask #task2Res {
+            color: white;
+            margin: 20px 0px 20px 10px;
+            font-size: 18px;
+            font-style: italic;
+            text-align: justify;
+        }
+
+        .back .secondTask #handList{
+            display:flex;
+            width: 200px;
+        }
+
+/*Стиль пикселей*/
+.dot {
+    width: 2px;
+    height: 2px;
+    position: absolute;
+    background-color: black;
+    font-size: 10px;
+}
+/* Надпись авторских прав*/
+footer {
+    background-color: #350aa4;
+    color: #a3d0eb;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    padding: 2px;
+    margin: 10px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}

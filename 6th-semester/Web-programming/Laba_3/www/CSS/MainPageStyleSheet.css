@@ -1,0 +1,73 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+}
+
+header {
+    text-align: center;
+    padding: 10px;
+    background-color: #c3d0fd;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #84bcd4;
+    padding: 10px;
+}
+
+    nav a {
+        color: black;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+
+    nav a:hover {
+        color: darkblue;
+    }
+
+    nav a:active {
+        color: #6d18a5;
+    }
+
+section {
+    margin: 20px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 1px;
+    background-color: #c3d0fd;
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+#task_text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    text-align: justify;
+    text-indent: 20px;
+    color: black; 
+}
+    .main_text {
+        font-weight: bold;
+    }
+
+ol.custom_list {
+    list-style-type: none;
+    counter-reset: list-counter;
+    margin: 0px;
+    padding-left: 0px;
+}
+
+ol.custom_list li{
+    counter-increment: list-counter;
+}
+
+ol.custom_list li::before{
+    content: counter(list-counter, lower-alpha) ") ";
+    font-weight: normal;
+}
