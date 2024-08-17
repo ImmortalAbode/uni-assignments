@@ -1,0 +1,8 @@
+Результаты работы программы:
+fso.CreateFolder(D:\KAI\Операционные системы\Laba_6_7\source_dir)
+shell.Run((createNoteFile), 1, true)
+fso.CreateFolder(D:\KAI\Операционные системы\Laba_6_7\result_dir)
+fso.CopyFile(D:\KAI\Операционные системы\Laba_6_7\source_dir\source_file.txt, D:\KAI\Операционные системы\Laba_6_7\result_dir\, true)
+fso.GetFile(D:\KAI\Операционные системы\Laba_6_7\result_dir\source_file.txt).Name = result_file.txt
+shell.Run(shell.ExpandEnvironmentStrings(editResFile), 1, true)
+Файлы разные.

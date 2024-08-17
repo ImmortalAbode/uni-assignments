@@ -1,0 +1,26 @@
+C:\WINDOWS\system32\cmd.exe /C mkdir "D:\KAI\Операционные системы\Laba_5\to_dir"
+C:\WINDOWS\notepad.exe "D:\KAI\Операционные системы\Laba_5\to_dir\source_file.txt"
+C:\WINDOWS\system32\cmd.exe /C mkdir "D:\KAI\Операционные системы\Laba_5\from_dir"
+C:\WINDOWS\system32\cmd.exe /K move "D:\KAI\Операционные системы\Laba_5\to_dir" "D:\KAI\Операционные системы\Laba_5\from_dir(1)"
+C:\WINDOWS\notepad.exe "D:\KAI\Операционные системы\Laba_5\from_dir\result_file.doc"
+C:\WINDOWS\system32\cmd.exe /C attrib +R -A "D:\KAI\Операционные системы\Laba_5\from_dir\source_file.txt"
+C:\WINDOWS\system32\cmd.exe /K dir /w "D:\KAI\Операционные системы\Laba_5\from_dir(1)"
+ Том в устройстве D не имеет метки.
+ Серийный номер тома: 5A60-7168
+
+ Содержимое папки D:\KAI\Операционные системы\Laba_5\from_dir(1)
+
+[.]               [..]              source_file.txt   
+               1 файлов             14 байт
+               2 папок  39 752 536 064 байт свободно
+C:\WINDOWS\system32\cmd.exe /K dir /w "D:\KAI\Операционные системы\Laba_5\from_dir"
+ Том в устройстве D не имеет метки.
+ Серийный номер тома: 5A60-7168
+
+ Содержимое папки D:\KAI\Операционные системы\Laba_5\from_dir
+
+[.]               [..]              result_file.doc   
+               1 файлов          1 041 байт
+               2 папок  39 752 536 064 байт свободно
+C:\WINDOWS\system32\cmd.exe /K type "D:\KAI\Операционные системы\Laba_5\from_dir(1)\source_file.txt"
+Hellow, world!
