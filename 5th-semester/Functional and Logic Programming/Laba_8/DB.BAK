@@ -1,0 +1,150 @@
+/*****************************************************************************
+
+		Copyright (c) My Company
+
+ Project:  LAB_4
+ FileName: LAB_4.PRO
+ Purpose: No description
+ Written by: Visual Prolog
+ Comments:
+******************************************************************************/
+
+%include "lab_4.inc"
+
+domains
+	BookName = STRING
+	AuthorName = STRING
+	ReaderName =  STRING
+	Day, Month, Year = INTEGER
+	DueDate = date(Day, Month, Year)
+
+facts
+	bookAuthor(BookName, AuthorName)
+	readerDueDate(BookName, ReaderName, DueDate)
+
+predicates
+	nondeterm switch(INTEGER)
+	nondeterm repeat
+clauses
+
+	repeat.
+	repeat:-repeat.
+	
+	switch(Case) :- Case=0, write("Good-bye"), nl, !.
+	
+	%ОПЕРАЦИИ С КНИГАМИ
+	switch(Case) :- Case=1, 
+  		write('\10', "ДОБАВЛЕНИЕ КНИГИ"),
+  		write('\10', "Название книги: "), readln(BName),
+		write('\10', "Автор: "), readln(AName),
+		assert(bookAuthor(BName, AName)), fail.
+	
+	switch(Case) :- Case=2, 
+  		write('\10', "УДАЛЕНИЕ КНИГИ"),
+  		write('\10', "Название книги: "), readln(BName),
+		write('\10', "Автор: "), readln(AName),
+		retract(bookAuthor(BName, AName)), fail.
+	
+	switch(Case) :- Case=3,
+		write('\10', "РЕДАКТИРОВАНИЕ КНИГИ"),
+  		write('\10', "Название книги: "), readln(BName),
+		write('\10', "Автор: "), readln(AName),
+		retract(bookAuthor(BName, AName)),
+		write('\10', "Новое название книги: "), readln(NewBName),
+		write('\10', "Новый автор: "), readln(NewAName),
+		assert(bookAuthor(NewBName, NewAName)), fail.
+	
+	%ОПЕРАЦИИ С ЧИТАТЕЛЯМИ
+	switch(Case) :- Case=4, 
+  		write('\10', "ДОБАВЛЕНИЕ ЧИТАТЕЛЯ"),
+  		write('\10', "Название выбранной книги: "), readln(BName),
+		write('\10', "Имя читателя: "), readln(RName),
+		write('\10', "Дата: День: "), readint(DDay),
+		write('\10', "Дата: Месяц: "), readint(DMonth),
+		write('\10', "Дата: Год: "), readint(DYear),
+		bookAuthor(BName, _),
+		assert(readerDueDate(BName, RName, date(DDay, DMonth, DYear))), fail.
+	
+	switch(Case) :- Case=5, 
+  		write('\10', "УДАЛЕНИЕ ЧИТАТЕЛЯ"),
+  		write('\10', "Название выбранной книги: "), readln(BName),
+		write('\10', "Имя читателя: "), readln(RName),
+		write('\10', "Дата: День: "), readint(DDay),
+		write('\10', "Дата: Месяц: "), readint(DMonth),
+		write('\10', "Дата: Год: "), readint(DYear),
+		retract(readerDueDate(BName, RName, date(DDay, DMonth, DYear))), fail.
+	
+	switch(Case) :- Case=6,
+  		write('\10', "РЕДАКТИРОВАНИЕ ЧИТАТЕЛЯ"),
+  		write('\10', "Название выбранной книги: "), readln(BName),
+		write('\10', "Имя читателя: "), readln(RName),
+		write('\10', "Дата: День: "), readint(DDay),
+		write('\10', "Дата: Месяц: "), readint(DMonth),
+		write('\10', "Дата: Год: "), readint(DYear),
+		retract(readerDueDate(BName, RName, date(DDay, DMonth, DYear))),
+  		write('\10', "Новое название выбранной книги: "), readln(NewBName),
+		write('\10', "Новое имя читателя: "), readln(NewRName),
+		write('\10', "Новая дата: День: "), readint(NewDDay),
+		write('\10', "Новая дата: Месяц: "), readint(NewDMonth),
+		write('\10', "Новая дата: Год: "), readint(NewDYear),
+		assert(readerDueDate(NewBName, NewRName, date(NewDDay, NewDMonth, NewDYear))), fail.
+		
+	switch(Case) :- Case=7,
+		write('\10', "СОХРАНЕНИЕ ДАННЫХ"),
+  		save("C:\\Users\\yusup\\prologLog\\DataBase.txt"),
+  		write('\10', "Данные сохранены в: C:\\Users\\yusup\\prologLog\\DataBase.txt"), nl, fail.
+  		
+  	switch(Case) :- Case = 8,
+  		write('\10', "ЗАГРУЗКА ДАННЫХ ИЗ БД"),
+  		retractall(bookAuthor(_,_)),
+  		retractall(readerDueDate(_,_,_)),
+  		consult("C:\\Users\\yusup\\prologLog\\DataBase.txt"),
+  		write('\10', "Данные загружены из: C:\\Users\\yusup\\prologLog\\DataBase.txt"), nl, fail.
+  		
+	switch(Case) :- Case = 9,
+		write('\10', "ДАННЫЕ"),
+		write('\10', "-КНИГИ-"),
+		bookAuthor(BName, AName),
+		write('\10', "Название: ", BName, " Автор: ", AName), fail.
+	
+	switch(Case) :- Case = 10,
+		write('\10', "-ЧИТАТЕЛИ-"),
+		readerDueDate(BName, RName, date(DDay, DMonth, DYear)),
+		write('\10', "Название выбранной книги: ", BName),
+		write('\10', "Имя читателя: ", RName),
+		write('\10', "Дата: День: ", DDay),
+		write('\10', "Дата: Месяц: ", DMonth),
+		write('\10', "Дата: Год: ", DYear),
+		write('\10'), fail.
+	
+	switch(Case) :- Case = 11,
+		write('\11', "-ЧИТАТЕЛИ-КНИГИ-"),
+		readerDueDate(BName, RName, date(DDay, DMonth, DYear)),
+		bookAuthor(BName, AName),
+		write('\10', "Имя читателя: ", RName),
+		write('\10', "Дата: День: ", DDay),
+		write('\10', "Дата: Месяц: ", DMonth),
+		write('\10', "Дата: Год: ", DYear),
+		write('\10', "Название выбранной книги: ", BName),
+		write('\10', "Автор книги: ", AName),
+		write('\10'), fail.
+	
+		
+	
+goal
+	repeat,
+	nl, nl, write('\10', "ФУНКЦИИ:"),
+	write('\10', "1. Добавить книгу"),
+	write('\10', "2. Удалить книгу"),
+	write('\10', "3. Редактировать книгу"),
+	write('\10', "4. Добавить читателя"),
+	write('\10', "5. Удалить читателя"),
+	write('\10', "6. Редактировать читателя"),
+	write('\10', "7. Сохранить данные в файл"),
+	write('\10', "8. Загрузить данные из файла"),
+	write('\10', "9. Показать книги"),
+	write('\10', "10. Показать читателей"),
+	write('\10', "11. Показать читателей и книги"),
+	write('\10', "0. Выход"),
+	write('\10', "Выбор: "), 
+	readint(N), nl, switch(N), nl, nl, !. 

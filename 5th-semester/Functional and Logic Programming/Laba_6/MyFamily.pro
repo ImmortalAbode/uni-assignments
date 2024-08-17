@@ -1,0 +1,286 @@
+/*****************************************************************************
+
+		Copyright (c) My Company
+
+ Project:  MYFAMILY
+ FileName: MYFAMILY.PRO
+ Purpose: No description
+ Written by: Visual Prolog
+ Comments:
+******************************************************************************/
+
+include "myfamily.inc"
+
+%Вариант 3. A3, A13, Б9, Б19, Б23, В10
+
+predicates
+
+  %Базовые отношения, задаваемые в виде фактов.
+  nondeterm parent(STRING, STRING)
+  nondeterm man(STRING)
+  nondeterm woman(STRING)
+  nondeterm married_couple(STRING, STRING)
+  
+  %Вспомогательное отношение.
+  nondeterm sibling(STRING, STRING)
+  nondeterm check_any_cousin_brother(STRING, STRING, INTEGER)
+  
+  %Производные отношения, определяемые с помощью базовых отношений.
+  %А) Близкие кровные родственники.
+  %3. сын (son);
+  nondeterm son(STRING, STRING)
+  %13. племянник (nephew) - сын родного брата или сестры.
+  nondeterm nephew(STRING, STRING)
+  %Б) Неблизкие кровные родственники.
+  %9. N-юродный брат (любого уровня) (any_cousin_brother);
+  nondeterm any_cousin_brother(STRING, STRING, INTEGER)
+  %19. троюродный племянник (second_cousin_nephew) - сын троюродного брата или сестры;
+  nondeterm second_cousin_nephew(STRING, STRING)
+  %23. отпрыск (shoot) - потомок какого-либо предка.
+  nondeterm shoot(STRING, STRING, INTEGER)
+  %В) Родственники по закону.
+  %10) зять (daughters_husband) - муж дочери.
+  nondeterm daughters_husband(STRING, STRING)
+  
+  nondeterm run()
+
+clauses
+  %Факты.
+  parent("Даниэль", "Инес").
+  parent("Себастьян", "Ханна Крюгер").
+  parent("Ханна", "Йонас").
+  parent("Михаэль", "Йонас").
+  parent("Адам", "Безымянный").
+  parent("Ева", "Безымянный").
+  parent("Безымянный", "Тронте").
+  parent("Агнес", "Тронте").
+  parent("Тронте", "Мадс").
+  parent("Яна", "Мадс").
+  parent("Тронте", "Ульрих").
+  parent("Яна", "Ульрих").
+  parent("Ульрих", "Марта").
+  parent("Катарина", "Марта").
+  parent("Ульрих", "Магнус").
+  parent("Катарина", "Магнус").
+  parent("Ульрих", "Михаэль").
+  parent("Катарина", "Михаэль").
+  parent("Хелена", "Катарина").
+  parent("Герман", "Катарина").
+  parent("Бартош", "Агнес").
+  parent("Силья", "Агнес").
+  parent("Бартош", "Ханно").
+  parent("Силья", "Ханно").
+  parent("Ханно", "Шарлотта").
+  parent("Шарлотта", "Элизабет").
+  parent("Петер", "Элизабет").
+  parent("Шарлотта", "Франциска").
+  parent("Петер", "Франциска").
+  parent("Грета", "Хельге").
+  parent("Бернд", "Хельге").
+  parent("Хельге", "Петер").
+  parent("Силья", "Ханна Канвальд").
+  parent("Силья", "Эгон").
+  parent("Эгон", "Клаудия").
+  parent("Дорис", "Клаудия").
+  parent("Клаудия", "Борис").
+  parent("Бернд", "Регина").
+  parent("Регина", "Бартош Тидеманн").
+  parent("Борис", "Бартош Тидеманн").
+  
+  man("Даниэль").
+  man("Себастьян").
+  man("Йонас").
+  man("Михаэль").
+  man("Адам").
+  man("Безымянный").
+  man("Тронте").
+  man("Мадс").
+  man("Ульрих").
+  man("Магнус").
+  man("Бартош").
+  man("Герман").
+  man("Ханно").
+  man("Хельге").
+  man("Петер").
+  man("Бернд").
+  man("Эгон").
+  man("Борис").
+  man("Бартош Тидеманн").
+  
+  woman("Инес").
+  woman("Ханна Крюгер").
+  woman("Яна").
+  woman("Ева").
+  woman("Марта").
+  woman("Агнес").
+  woman("Силья").
+  woman("Хелена").
+  woman("Катарина").
+  woman("Шарлотта").
+  woman("Элизабет").
+  woman("Франциска").
+  woman("Грета").
+  woman("Ханна Канвальд").
+  woman("Дорис").
+  woman("Клаудия").
+  woman("Регина").
+  
+  married_couple("Михаэль", "Ханна Крюгер").
+  married_couple("Ульрих", "Катарина").
+  married_couple("Тронте", "Яна").
+  married_couple("Адам", "Ева").
+  married_couple("Безымянный", "Агнес").
+  married_couple("Герман", "Хелена").
+  married_couple("Бартош", "Силья").
+  married_couple("Петер", "Шарлотта").
+  married_couple("Бернд", "Грета").
+  married_couple("Эгон", "Дорис").
+  married_couple("Борис", "Регина").
+  
+  %Вспомогательные отношения.
+  %Проверка, что люди являются братьями/сестрами.
+  sibling(X, Y):-
+  	parent(Parent, X), parent(Parent, Y), not(X = Y), !. 
+  %Проверка, что N-юродный брат мужского пола. Отделяет первое вхождение в рекурсию от всей рекурсии.
+  check_any_cousin_brother(N_Brother, Child, N):-
+  	man(N_Brother),
+  	any_cousin_brother(N_Brother, Child, N).
+  
+  %Правила (по заданию). Предикат организуется как (КТО, ДЛЯ КОГО) или (КТО, ДЛЯ КОГО, КОЛЕНО РОДСТВА)
+  %Сын
+  son(ParentChild, Parent):- 
+  	parent(Parent, ParentChild), man(ParentChild).
+  %Племянник
+  nephew(Nephew, Uncle):- 
+  	man(Nephew), 
+  	parent(Parent, Nephew),
+  	sibling(Uncle, Parent).
+  %N-юродный брат.
+  any_cousin_brother(X, Y, 1):-
+  	sibling(X, Y).
+  any_cousin_brother(N_Brother, Child, N):-
+  	N > 1,
+  	parent(Parent_N_Brother, N_Brother),
+  	parent(Parent_Child, Child),
+  	M = N - 1,
+  	any_cousin_brother(Parent_N_Brother, Parent_Child, M).
+  %Троюродный племянник
+  second_cousin_nephew(Second_cousin_nephew, Second_cousin_uncle):-
+ 	man(Second_cousin_nephew),
+  	parent(Parent_1, Second_cousin_nephew), 
+  	parent(Parent_2, Parent_1),
+  	parent(Parent_3, Parent_2),
+  	parent(Child_2, Second_cousin_uncle),
+  	parent(Child_3, Child_2),
+  	sibling(Parent_3, Child_3).
+  %Отпрыск
+  shoot(N_Child, N_Parent, 0):-
+  	N_Child = N_Parent.
+  shoot(N_Child, N_Parent, N):-
+  	N > 0,
+  	parent(N_Parent, Child),
+  	M = N - 1,
+  	shoot(N_Child, Child, M).
+  %Зять
+  daughters_husband(Daughters_Husband, Daughters_Parent):- 
+  	man(Daughters_Husband), 
+  	married_couple(Daughters_Husband,Daughter), 
+  	woman(Daughter), 
+  	parent(Daughters_Parent, Daughter).	 
+  %Предикат запуска программы.
+  run():-
+  	%ПЕРЕЧЕНЬ ВОПРОСОВ, КАСАЮЩИХСЯ РОДСТВЕННЫХ ОТНОШЕНИЙ СЛЕДУЮЩИХ ТИПОВ:
+	%1)Находится ли субъект a в отношении R с субъектом b?[тип: R(a, b)]
+	%ВОПРОС 1. Является ли Йонас сыном Михаэль?
+	write("Является ли Йонас сыном Михаэль?"), nl,
+	son("Йонас", "Михаэль"),
+	write("Йонас сын для Михаэль."),
+	nl, nl,
+	fail;
+	
+	%ВОПРОС 2. Является ли Йонас племянником Магнуса?
+	write("Является ли Йонас племянником Магнуса?"), nl,
+	nephew("Йонас", "Магнус"),
+	write("Йонас племянник для Магнуса."),
+	nl, nl,
+	fail;
+	
+	
+	%ВОПРОС 3. Является ли Ульрих троюродным братом Франциска?
+	write("Является ли Ульрих троюродным братом Франциска?"), nl,
+	check_any_cousin_brother("Ульрих", "Франциска", 3),
+	write("Ульрих троюродный брат для Франциска."),
+	nl, nl,
+	fail;
+	
+	%ВОПРОС 4. Является ли Михаэль троюродным племянником Элизабет?
+	write("Является ли Михаэль троюродным племянником Элизабет?"), nl,
+	second_cousin_nephew("Михаэль", "Элизабет"),
+	write("Михаэль троюродный племянник Элизабет."),
+	nl, nl,
+	fail;
+	
+	%ВОПРОС 5. Является ли Йонас отпрыском Сильи?
+	write("Является ли Йонас отпрыском Сильи?"), nl,
+	shoot("Йонас", "Силья", 5),
+	write("Йонас отпрыск Сильи."),
+	nl, nl,
+	fail;
+	
+	%ВОПРОС 6. Является ли Безымянный зятем Бартоша?
+	write("Является ли Безымянный зятем Бартоша?"), nl,
+	daughters_husband("Безымянный", "Бартош"),
+	write("Безымянный зять Бартоша."),
+	nl, nl,
+	fail;
+	
+	%2)Кто находится в отношении R с субъектом a?[тип: R(a, Y), R(X, b)]
+	%ВОПРОС 1. Кто является родителями Клаудии?
+	write("Кто является родителями Клаудии?"), nl,
+	parent(Parent, "Клаудия"),
+	write(Parent), 
+	nl,
+	fail;
+	
+	%ВОПРОС 2. Кто является зятем Петера?
+	nl,
+	write("Кто является зятем Петера?"), nl,
+	daughters_husband("Петер", Daughters_parent),
+	write(Daughters_parent),
+	nl,
+	fail;
+	
+	%ВОПРОС 3. Кто является сыном Ульриха?
+	nl,
+	write("Кто является сыном Ульриха?"), nl,
+	son(Son, "Ульрих"),
+	write(Son),
+	nl,
+	fail;
+	
+	%3)Найти все пары субъектов, находящихся в отношении R. [тип: R(X,Y)]".
+	%Вопрос 1.
+	nl,
+	write ("Список всех троюродных племянников:"), nl,
+	second_cousin_nephew(Second_cousin_nephew, Second_cousin_uncle),
+	write(Second_cousin_nephew, " для ",Second_cousin_uncle),
+	nl,
+	fail;
+	%Вопрос 2.
+	nl,
+	write ("Список всех племянников:"), nl,
+	nephew(Nephew, Uncle),
+	write(Nephew, " для ",Uncle),
+	nl,
+	fail;
+	%Вопрос 3.
+	nl,
+	write("Список всех женатых пар:"), nl,
+	married_couple(Man, Woman),
+	write(Man, " и ",Woman),
+	nl,
+	fail.
+	
+goal
+	run().
+	

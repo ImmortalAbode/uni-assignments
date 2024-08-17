@@ -1,0 +1,2 @@
+item("23.12.2023","Инди-поп","Polnalyubvi","Кометы")
+item("23.12.2023","Поп-рок","Imagine Dragons","Bones")
