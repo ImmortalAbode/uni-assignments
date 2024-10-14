@@ -5,6 +5,7 @@
 #include "codeoperationtable.h"
 #include "StructSupportTable.h"
 #include "symbolicnamestable.h"
+
 #include <QTextEdit>
 #include <QTableWidget>
 
@@ -24,7 +25,7 @@ public:
     void LoadDefaultAssemplerOperationCode(QTableWidget* table_operation_codes_tableWidget);
 
     std::vector<AssemblerInstruction> ParseAssemblerSourceCode(QTextEdit* source_text_TextEdit);
-    CodeOperationTable ParseAssemblerOperationCode(QTableWidget* table_operation_codes_tableWidget);
+    bool ParseAssemblerOperationCode(QTableWidget *table_operation_codes_tableWidget, CodeOperationTable& opCodeTable, QTextEdit* fpe_text);
 
     void UpdateViewOfTable(QTableWidget* current_table, const int& row, const int& column);
 };

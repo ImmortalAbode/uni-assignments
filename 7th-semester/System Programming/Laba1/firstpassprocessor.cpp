@@ -6,9 +6,11 @@
 #include "StructSupportTable.h"
 #include "checks.h"
 #include "convert.h"
+
 #include <vector>
 #include <QTableWidget>
 #include <QTextEdit>
+#include <QString>
 
 bool FirstPassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::vector<AssemblerInstruction>& sourceText_code, const CodeOperationTable& opCode_table,
                                                 QTableWidget* aux_table, std::vector<SupportTable> sup_table,

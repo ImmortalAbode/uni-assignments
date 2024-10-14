@@ -130,18 +130,25 @@ std::vector<AssemblerInstruction> TablesManager::ParseAssemblerSourceCode(QTextE
     return source_code;
 
 }
-CodeOperationTable TablesManager::ParseAssemblerOperationCode(QTableWidget *table_operation_codes_tableWidget)
+bool TablesManager::ParseAssemblerOperationCode(QTableWidget *table_operation_codes_tableWidget, CodeOperationTable& opCodeTable, QTextEdit* fpe_text)
 {
-    CodeOperationTable opCode_table{};
-    for (int row{}; row < table_operation_codes_tableWidget->rowCount(); ++row)
+    fpe_text->clear();
+    for (int row{}; row < table_operation_codes_tableWidget->rowCount() - 1; ++row)
     {
         QString mnemonic_code{table_operation_codes_tableWidget->item(row, 0) == nullptr ? "" : table_operation_codes_tableWidget->item(row, 0)->text()};
         QString binary_code{table_operation_codes_tableWidget->item(row, 1) == nullptr ? "" : table_operation_codes_tableWidget->item(row, 1)->text()};
         QString size{table_operation_codes_tableWidget->item(row, 2) == nullptr ? "" : table_operation_codes_tableWidget->item(row, 2)->text()};
 
-        opCode_table.insert(mnemonic_code.toUpper(), binary_code.toUpper(), size);
+        //Проверка уникальности МКОП в ТКО.
+        CodeOperation opCode{};
+        if (opCodeTable.find(mnemonic_code, opCode))
+        {
+            fpe_text->append("Строка " + QString::number(row + 1) + ": Найдены совпадения в названиях МКОП!\nСовпадающий МКОП: " + mnemonic_code + ".\n");
+            return false;
+        }
+        opCodeTable.insert(mnemonic_code.toUpper(), binary_code.toUpper(), size);
     }
-    return opCode_table;
+    return true;
 }
 
 //Функция обновления таблиц при их изменении.

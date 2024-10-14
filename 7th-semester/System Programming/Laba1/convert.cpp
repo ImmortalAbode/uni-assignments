@@ -1,5 +1,9 @@
 #include "convert.h"
 
+#include <vector>
+#include <QString>
+#include <QChar>
+
 //Перевод из 10-чной СИ в 16-ричную СИ.
 QString Convert::DecToHex(int dec_number)
 {

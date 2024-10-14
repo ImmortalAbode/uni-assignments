@@ -1,15 +1,10 @@
 #include "codeoperationtable.h"
 
-CodeOperationTable::CodeOperationTable(size_t size)
-    : opCode_table(size)
-{
-}
-
 size_t CodeOperationTable::hash(const QString& key) const
 {
     size_t hash_value = 0;
     for (QChar c : key) {
-        hash_value = (hash_value * 31 + c.unicode()) % opCode_table.size();
+        hash_value = (hash_value * 31 + c.unicode()) % TABLE_SIZE;
     }
     return hash_value;
 }
@@ -42,10 +37,16 @@ void CodeOperationTable::remove(const QString& mnemonic)
 
 void CodeOperationTable::clear()
 {
-    opCode_table.clear();
+    for (size_t i = 0; i < TABLE_SIZE; ++i)
+        opCode_table[i] = CodeOperation();
 }
 
-const std::vector<CodeOperation> &CodeOperationTable::getOpCodeTable() const
+size_t CodeOperationTable::getOpCodeTableSize() const
+{
+    return TABLE_SIZE;
+}
+
+const CodeOperation* CodeOperationTable::getOpCodeTable() const
 {
     return opCode_table;
 }

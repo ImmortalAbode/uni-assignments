@@ -31,11 +31,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_choice_example_comboBox_currentIndexChanged(int index);
+    void on_choice_example_comboBox_activated(int index);
 
     void on_table_operation_codes_tableWidget_cellChanged(int row, int column);
     void on_auxiliary_table_tableWidget_cellChanged(int row, int column);
     void on_table_symbolic_names_tableWidget_cellChanged(int row, int column);
+    void on_source_text_textEdit_textChanged();
 
     void on_first_pass_pushButton_clicked();
     void on_second_pass_pushButton_clicked();

@@ -4,9 +4,7 @@
 #include "codeoperationtable.h"
 
 #include <QTextEdit>
-#include <QTableWidget>
 #include <QString>
-#include <QChar>
 
 class Checks
 {
