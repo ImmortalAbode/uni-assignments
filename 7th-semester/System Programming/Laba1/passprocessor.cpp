@@ -1,4 +1,4 @@
-#include "firstpassprocessor.h"
+#include "passprocessor.h"
 
 #include "StructAssemblerLine.h"
 #include "codeoperationtable.h"
@@ -12,8 +12,8 @@
 #include <QTextEdit>
 #include <QString>
 
-bool FirstPassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::vector<AssemblerInstruction>& sourceText_code, const CodeOperationTable& opCode_table,
-                                                QTableWidget* aux_table, std::vector<SupportTable> sup_table,
+bool PassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::vector<AssemblerInstruction>& sourceText_code, const CodeOperationTable& opCode_table,
+                                                QTableWidget* aux_table, std::vector<SupportTable>& sup_table,
                                                 QTableWidget* table_symbolic_names, SymbolicNamesTable& symb_table)
 {
     //Очищаем таблицы и устанавливаем 4 столбца во вспомогательной таблице и 2 столбца в ТСИ.
@@ -30,11 +30,11 @@ bool FirstPassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::
 
     /*Адреса (хранятся в 10-ичной системе).*/
     //Счетчик адреса (СА).
-    int addressCounter{};
+    this->addressCounter = 0;
     //Адрес загрузки программы.
-    int start_prog_address{};
+    this->start_prog_address = 0;
     //Адрес точки входа в программу.
-    int end_prog_address{};
+    this->end_prog_address = 0;
 
     //Название программы.
     QString prog_name{};
@@ -180,10 +180,10 @@ bool FirstPassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::
                                 {
                                     fpe_text->append("Предупреждение: Строка " + QString::number(i + 1) + ": Весь следующий текст программы после строки с директивой END учитываться не будет.\n");
                                 }
-                                //Если Адрес Загрузки и точка входа не совпадают.
-                                if (start_prog_address != end_prog_address)
+                                //Если Точка входа программы не укладывается в адресное пространство.
+                                if (end_prog_address < start_prog_address || end_prog_address >= this->addressCounter)
                                 {
-                                    fpe_text->append("Строка " + QString::number(i + 1) + ": Адрес загрузки программы не совпадает с точкой входа (Директивы START и END)!");
+                                    fpe_text->append("Строка " + QString::number(i + 1) + ": Точка входа программы не укладывается в адресное пространство (Директива END)!");
                                     return false;
                                 }
                                 //Второй операнд не учитывается.
@@ -238,7 +238,7 @@ bool FirstPassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::
                                 else
                                 {
                                     //Выделение под 16-ричное число.
-                                    if (check.CheckCorrectAmountMemoryForHexNumber(operand1))
+                                    if (check.CheckCorrectAmountMemoryForHexNumber(operand1) && check.CheckAmountMemoryForAddress(operand1.split('\'')[1]))
                                     {
                                         //Выводим в вспомогательную таблицу строчку.
                                         QString str_AC = Convert::DecToHex(addressCounter).rightJustified(6, '0');
@@ -602,5 +602,148 @@ bool FirstPassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::
         return false;
     }
     //Если все хорошо - выход.
+    return true;
+}
+
+bool PassProcessor::LoadBinaryCodeText(QTableWidget *omh_table, QTextEdit *spe_text, QTextEdit *binaryCode_text,
+                                       const std::vector<SupportTable> &sup_table, const SymbolicNamesTable &symb_table)
+{
+    //Очищаем таблицу заголовка объектного модуля.
+    omh_table->clear();
+    omh_table->setColumnCount(3);
+    omh_table->setRowCount(1);
+
+    //Очищаем поле с ошибками.
+    spe_text->clear();
+
+    //Вычисляем длину программы: СА = СА - АЗ.
+    int length_programm{this->addressCounter - this->start_prog_address};
+    /*-------------------------------------------------------------------------------------------------------------
+     | 1. Считываем первую строку вспомогательной таблицы и формируем запись-заголовок.                           |
+     -------------------------------------------------------------------------------------------------------------*/
+    //Для заголовка объектного модуля.
+    omh_table->setItem(0, 0, new QTableWidgetItem(sup_table[0].machine_code));
+    omh_table->setItem(0, 1, new QTableWidgetItem(Convert::DecToHex(length_programm).rightJustified(6, '0')));
+    omh_table->setItem(0, 2, new QTableWidgetItem(Convert::DecToHex(this->start_prog_address).rightJustified(6, '0')));
+    //Для двоичного кода.
+    binaryCode_text->append("H  " + sup_table[0].machine_code + "\t" +
+                                 Convert::DecToHex(this->start_prog_address).rightJustified(6, '0') + "\t" +
+                                 Convert::DecToHex(this->addressCounter).rightJustified(6, '0'));
+
+    /*------------------------------------------------------------------
+     | 2. Цикл строки исходного текста (через вспомогательную таблицу).|
+     ------------------------------------------------------------------*/
+    for (size_t i{ 1 }; i < sup_table.size(); i++){
+        /*----------------------------
+         | 3. Обработка записи-конец.|
+         ----------------------------*/
+        //Если найдена директива END, то формируется запись-конец и запись двоичного кода завершается.
+        if (sup_table[i].operation_code == "END")
+        {
+            binaryCode_text->append("E  " + Convert::DecToHex(this->end_prog_address).rightJustified(6,'0'));
+            break;
+        }
+        //Переменные для записи двоичного представления команд и данных (адрес метки, число, строка и тд.).
+        QString binary_opCode{};
+        QString data{};
+        //Директивы START и END встречены быть не могут, т.к. обработаны выше.
+        //Директивы BYTE, WORD, RESB, RESW.
+        if (check.CheckDirective(sup_table[i].operation_code) != "")
+        {
+            //Операнд является числом в 10-тичной СИ.
+            if (check.CheckCorrectAmountMemoryForDecNumber(sup_table[i].operand1))
+            {
+                //Директивы резервирования памяти.
+                if (sup_table[i].operation_code=="RESB" || sup_table[i].operation_code=="RESW")
+                {
+                    binary_opCode = "";
+                    data = "";
+                }
+                //Директивы выделения памяти под 1b (BYTE) или 3b (WORD).
+                else
+                {
+                    binary_opCode = "";
+                    data = Convert::DecToHex(sup_table[i].operand1.toInt());
+                    sup_table[i].operation_code == "BYTE" ? (data = data.rightJustified(2, '0')) : (data = data.rightJustified(6, '0'));
+                }
+            }
+            //Это либо unicode-строка, либо число в 16 СИ.
+            else
+            {
+                //Это число в 16 СИ.
+                if (check.CheckCorrectAmountMemoryForHexNumber(sup_table[i].operand1))
+                {
+                    binary_opCode = "";
+                    data = sup_table[i].operand1.split('\'')[1];
+                }
+                //Это unicode строка.
+                else
+                {
+                    binary_opCode = "";
+                    QString unicode_string{sup_table[i].operand1.split('\'')[1]};
+                    for (QChar chr : unicode_string){
+                        int ASCII_code = chr.unicode();
+                        data.append(Convert::DecToHex(ASCII_code));
+                    }
+                }
+            }
+        }
+        //Иначе это может быть только реальный двоичный КОП.
+        else
+        {
+            int type_addr{Convert::HexToDec(sup_table[i].operation_code) % 2}; //Если = 0, то непосредственная/регистровая адресация, иначе прямая.
+            //Операнды обязаны быть.
+            if (type_addr != 0)
+            {
+                if (sup_table[i].operand1.isEmpty() && sup_table[i].operand2.isEmpty()){
+                    spe_text->append("Строка " + QString::number(i+1) + ": Неверно задан операнд, т.к. тип адресации (прямая) подразумевает "
+                                                                              "обязательное наличие операнда.");
+                    return false;
+                }
+                QString address{};
+                //Поиск СИ в ТСИ (операнд точно должен быть СИ).
+                if (symb_table.find(sup_table[i].operand1, address))
+                {
+                    binary_opCode = sup_table[i].operation_code;
+                    data = address;
+                }
+                else
+                {
+                    spe_text->append("Строка " + QString::number(i+1) + ": Неверно задан операнд, т.к. тип адресации (прямая) подразумевает, "
+                                                                          "что операнд является меткой. Метка: " + sup_table[i].operand1 +
+                                     " не найдена в ТСИ.");
+                    return false;
+                }
+            }
+            //Операнды могут не быть, а могут быть.
+            else
+            {
+                //Два операнда-регистра (проверка регистровой адресации в первом проходе).
+                if (!sup_table[i].operand1.isEmpty() && !sup_table[i].operand2.isEmpty())
+                {
+                    binary_opCode = sup_table[i].operation_code;
+                    data = Convert::DecToHex(sup_table[i].operand1.split('R')[1].toInt()) +
+                           Convert::DecToHex(sup_table[i].operand2.split('R')[1].toInt());
+                }
+                //Один операнд-число (проверка непосредственной адресации в первом проходе).
+                else if (!sup_table[i].operand1.isEmpty() && sup_table[i].operand2.isEmpty())
+                {
+                    binary_opCode = sup_table[i].operation_code;
+                    data = Convert::DecToHex(sup_table[i].operand1.toInt()).rightJustified(2,'0');
+                }
+                //Нет операндов.
+                else
+                {
+                    binary_opCode = sup_table[i].operation_code;
+                    data = "";
+                }
+            }
+        }
+        //Вывод результатов в поле Двоичного кода.
+        binaryCode_text->append("T  " + sup_table[i].machine_code + "\t" +
+                                     Convert::DecToHex(binary_opCode.length() + data.length()).rightJustified(2, '0') +
+                                     (binary_opCode.isEmpty() ? "" : "\t") + binary_opCode +
+                                     (data.isEmpty() ? "" : "\t") + data);
+    }
     return true;
 }

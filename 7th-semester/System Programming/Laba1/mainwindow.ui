@@ -82,6 +82,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
     background-color: #E0E0E0; 
@@ -126,6 +129,9 @@ QPushButton:pressed {
       <pointsize>12</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
@@ -199,6 +205,9 @@ QPushButton:pressed {
       <family>Times New Roman</family>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">QComboBox {
@@ -328,6 +337,9 @@ QComboBox QAbstractItemView::item:selected {
        <width>381</width>
        <height>271</height>
       </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>ArrowCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">QTableWidget {
@@ -519,6 +531,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <verstretch>200</verstretch>
       </sizepolicy>
      </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>ArrowCursor</cursorShape>
+     </property>
      <property name="styleSheet">
       <string notr="true">QTableWidget {
     background-color: white;
@@ -632,6 +647,9 @@ QTableWidget::item:selected {
        <verstretch>100</verstretch>
       </sizepolicy>
      </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>ArrowCursor</cursorShape>
+     </property>
      <property name="styleSheet">
       <string notr="true">QTableWidget {
     background-color: white;
@@ -723,7 +741,6 @@ QTableWidget::item:selected {
     border-right: 2px solid #e0e0e0;
     border-bottom: 2px solid #e0e0e0;
     border-radius: 5px;
-	color: red;
 }</string>
      </property>
     </widget>
@@ -786,7 +803,7 @@ QTableWidget::item:selected {
 }
 </string>
     </property>
-    <widget class="QTextBrowser" name="second_pass_errors_textBrowser_2">
+    <widget class="QTextBrowser" name="second_pass_errors_textBrowser">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -804,7 +821,8 @@ QTableWidget::item:selected {
      <property name="font">
       <font>
        <family>Times New Roman</family>
-       <pointsize>12</pointsize>
+       <pointsize>9</pointsize>
+       <italic>true</italic>
       </font>
      </property>
      <property name="styleSheet">
@@ -815,7 +833,6 @@ QTableWidget::item:selected {
     border-right: 2px solid #e0e0e0;
     border-bottom: 2px solid #e0e0e0;
     border-radius: 5px;
-	color: red;
 }</string>
      </property>
     </widget>
@@ -859,7 +876,7 @@ QTableWidget::item:selected {
      <property name="font">
       <font>
        <family>Times New Roman</family>
-       <pointsize>12</pointsize>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -912,6 +929,9 @@ QTableWidget::item:selected {
        <width>361</width>
        <height>51</height>
       </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>ArrowCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">QTableWidget {

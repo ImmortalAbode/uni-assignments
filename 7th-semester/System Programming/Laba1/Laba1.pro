@@ -12,9 +12,9 @@ SOURCES += \
     checks.cpp \
     codeoperationtable.cpp \
     convert.cpp \
-    firstpassprocessor.cpp \
     main.cpp \
     mainwindow.cpp \
+    passprocessor.cpp \
     symbolicnamestable.cpp \
     tablesmanager.cpp
 
@@ -25,8 +25,8 @@ HEADERS += \
     checks.h \
     codeoperationtable.h \
     convert.h \
-    firstpassprocessor.h \
     mainwindow.h \
+    passprocessor.h \
     symbolicnamestable.h
 
 FORMS += \

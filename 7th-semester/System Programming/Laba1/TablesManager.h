@@ -24,6 +24,7 @@ public:
     void LoadDefaultAssemblerSourceCode(QTextEdit* source_text_TextEdi);
     void LoadDefaultAssemplerOperationCode(QTableWidget* table_operation_codes_tableWidget);
 
+    QStringList GetLineItems(const QString &line);
     std::vector<AssemblerInstruction> ParseAssemblerSourceCode(QTextEdit* source_text_TextEdit);
     bool ParseAssemblerOperationCode(QTableWidget *table_operation_codes_tableWidget, CodeOperationTable& opCodeTable, QTextEdit* fpe_text);
 

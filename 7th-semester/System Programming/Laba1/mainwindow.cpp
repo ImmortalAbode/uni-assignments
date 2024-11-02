@@ -51,7 +51,13 @@ void MainWindow::on_choice_example_comboBox_activated(int index)
     ui->table_symbolic_names_tableWidget->setColumnCount(0);
     ui->table_symbolic_names_tableWidget->setRowCount(0);
 
+    ui->object_module_header_tableWidget->clear();
+    ui->object_module_header_tableWidget->setColumnCount(0);
+    ui->object_module_header_tableWidget->setRowCount(0);
+
     ui->first_pass_errors_textBrowser->clear();
+    ui->second_pass_errors_textBrowser->clear();
+    ui->binary_code_textBrowser->clear();
     switch (index)
     {
     case 0:
@@ -75,6 +81,12 @@ void MainWindow::on_table_operation_codes_tableWidget_cellChanged(int row, int c
     ui->table_symbolic_names_tableWidget->clear();
     ui->table_symbolic_names_tableWidget->setColumnCount(0);
     ui->table_symbolic_names_tableWidget->setRowCount(0);
+
+    ui->object_module_header_tableWidget->clear();
+    ui->object_module_header_tableWidget->setColumnCount(0);
+    ui->object_module_header_tableWidget->setRowCount(0);
+
+    ui->binary_code_textBrowser->clear();
     //Заблокировать кнопку второго прохода.
     ui->second_pass_pushButton->setEnabled(false);
 }
@@ -96,6 +108,12 @@ void MainWindow::on_source_text_textEdit_textChanged()
     ui->table_symbolic_names_tableWidget->clear();
     ui->table_symbolic_names_tableWidget->setColumnCount(0);
     ui->table_symbolic_names_tableWidget->setRowCount(0);
+
+    ui->object_module_header_tableWidget->clear();
+    ui->object_module_header_tableWidget->setColumnCount(0);
+    ui->object_module_header_tableWidget->setRowCount(0);
+
+    ui->binary_code_textBrowser->clear();
     //Заблокировать кнопку второго прохода.
     ui->second_pass_pushButton->setEnabled(false);
 }
@@ -108,10 +126,16 @@ void MainWindow::on_first_pass_pushButton_clicked()
     this->opCode_table.clear();
     this->sup_table.clear();
     this->symb_table.clear();
+    //Очищаем элементы интерфейса второго прохода.
+    ui->object_module_header_tableWidget->clear();
+    ui->object_module_header_tableWidget->setColumnCount(0);
+    ui->object_module_header_tableWidget->setRowCount(0);
+    ui->binary_code_textBrowser->clear();
+    ui->second_pass_errors_textBrowser->clear();
     this->sourceText_code = TManager->ParseAssemblerSourceCode(ui->source_text_textEdit);
     if(!this->TManager->ParseAssemblerOperationCode(ui->table_operation_codes_tableWidget, opCode_table, ui->first_pass_errors_textBrowser))
         return;
-    if (!this->fpp.LoadSymbolicNamesTable(ui->first_pass_errors_textBrowser, sourceText_code, opCode_table, ui->auxiliary_table_tableWidget,
+    if (!this->pp.LoadSymbolicNamesTable(ui->first_pass_errors_textBrowser, sourceText_code, opCode_table, ui->auxiliary_table_tableWidget,
                                      sup_table, ui->table_symbolic_names_tableWidget, symb_table))
     {
         //Очищаем элементы интерфейса.
@@ -122,13 +146,40 @@ void MainWindow::on_first_pass_pushButton_clicked()
         ui->table_symbolic_names_tableWidget->clear();
         ui->table_symbolic_names_tableWidget->setColumnCount(0);
         ui->table_symbolic_names_tableWidget->setRowCount(0);
+
+        ui->object_module_header_tableWidget->clear();
+        ui->object_module_header_tableWidget->setColumnCount(0);
+        ui->object_module_header_tableWidget->setRowCount(0);
+
+        ui->binary_code_textBrowser->clear();
         return;
+    }
+    else
+    {
+        ui->auxiliary_table_tableWidget->resizeColumnsToContents();
+        ui->table_symbolic_names_tableWidget->resizeColumnsToContents();
     }
     ui->second_pass_pushButton->setEnabled(true);
 }
 //Второй проход.
 void MainWindow::on_second_pass_pushButton_clicked()
 {
-    //Обработка второго прохода.
+
+    if(!this->pp.LoadBinaryCodeText(ui->object_module_header_tableWidget, ui->second_pass_errors_textBrowser, ui->binary_code_textBrowser, sup_table, symb_table))
+    {
+        //Очищаем элементы интерфейса.
+        ui->object_module_header_tableWidget->clear();
+        ui->object_module_header_tableWidget->setColumnCount(0);
+        ui->object_module_header_tableWidget->setRowCount(0);
+
+        ui->binary_code_textBrowser->clear();
+    }
+    else
+    {
+        ui->object_module_header_tableWidget->resizeColumnsToContents();
+    }
+    //Визуализация кнопок.
+    ui->first_pass_pushButton->setEnabled(true);
+    ui->second_pass_pushButton->setEnabled(false);
 }
 

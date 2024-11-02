@@ -6,7 +6,7 @@
 #include "codeoperationtable.h"
 #include "StructSupportTable.h"
 #include "symbolicnamestable.h"
-#include "firstpassprocessor.h"
+#include "passprocessor.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,7 +24,7 @@ private:
     CodeOperationTable opCode_table{};
     std::vector<SupportTable> sup_table{};
     SymbolicNamesTable symb_table{};
-    FirstPassProcessor fpp{};
+    PassProcessor pp{};
 
 public:
     MainWindow(QWidget *parent = nullptr);

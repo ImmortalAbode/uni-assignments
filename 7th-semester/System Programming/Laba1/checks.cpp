@@ -332,12 +332,12 @@ bool Checks::CheckCorrectAmountMemoryForHexNumber(const QString &amount_memory)
 }
 //Проверка на то, что операнд после директивы BYTE начинается на 'C' и корректно задан.
 bool Checks::CheckCorrectAmountMemoryForUnicodeString(const QString &amount_memory) {
-    if (amount_memory.startsWith('C')) {
-        QStringList parts = amount_memory.split('\'');
-        if (parts.size() == 3 && parts[2].isEmpty() &&
-            parts[0].length() == 1 && !parts[1].isEmpty()) {
-            return true;
-        }
+    if (amount_memory.startsWith('C') &&
+        amount_memory.endsWith("'") &&
+        amount_memory.indexOf("'") == 1 &&
+        amount_memory.lastIndexOf("'") == amount_memory.length() - 1)
+    {
+        return true;
     }
     return false;
 }

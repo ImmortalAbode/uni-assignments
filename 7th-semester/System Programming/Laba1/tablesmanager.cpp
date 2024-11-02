@@ -107,28 +107,52 @@ void TablesManager::LoadDefaultAssemplerOperationCode(QTableWidget *table_operat
 }
 
 //Функции парсинга данных из элементов интерфейса в структуру.
+//Поиск элементов в строке исходного кода ассемблирующей программы через регулярное выражение.
+QStringList TablesManager::GetLineItems(const QString &line)
+{
+    QStringList lineItems;
+
+    //Регулярное выражение для поиска возможных последовательностей символов.
+    static const QRegularExpression regex(R"((\w*'.+'\w*)|(\w+\s*)|([^\s]+\s*))");
+    //Извлечение готовых последовательностей символов из строки.
+    QRegularExpressionMatchIterator it = regex.globalMatch(line);
+    while (it.hasNext())
+    {
+        QRegularExpressionMatch match = it.next();
+        lineItems.append(match.captured().trimmed()); // Убираем пробелы и табы по краям.
+    }
+    return lineItems;
+}
 std::vector<AssemblerInstruction> TablesManager::ParseAssemblerSourceCode(QTextEdit *source_text_TextEdit)
 {
-    std::vector<AssemblerInstruction> source_code{};
+    std::vector<AssemblerInstruction> source_code;
     QString text = source_text_TextEdit->toPlainText();
-    QStringList lines = text.split("\n");
+    QStringList lines = text.split("\n", Qt::SkipEmptyParts); // Разделяем строки, пропуская пустые.
+
     for (const QString &line : lines)
     {
-        static const QRegularExpression for_split_on_parts{"\\s+"};
-        QStringList parts = line.split(for_split_on_parts, Qt::SkipEmptyParts);
         AssemblerInstruction temp_code_line{};
-        bool startsWithSpace = line.startsWith(" ") || line.startsWith("\t");
-        if (startsWithSpace)
-            parts.prepend("");
-        if (parts.size() > 0){ temp_code_line.label = parts[0];};
-        if (parts.size() > 1){ temp_code_line.mnemonic = parts[1];};
-        if (parts.size() > 2){ temp_code_line.operand1 = parts[2];};
-        if (parts.size() > 3){ temp_code_line.operand2 = parts.mid(3).join(" ");};
+        QStringList parts{GetLineItems(line)}; // Разделяем строку на элементы.
+        // Проверяем, начинается ли строка с пробела или табуляции.
+        if (line.startsWith(" ") || line.startsWith('\t'))
+        {
+            // Если да, то присваиваем элементы с учетом смешения.
+            temp_code_line.label = "";
+            temp_code_line.mnemonic = parts.size() > 0 ? parts[0] : "";
+            temp_code_line.operand1 = parts.size() > 1 ? parts[1] : "";
+            temp_code_line.operand2 = parts.size() > 2 ? parts.mid(2).join(" ") : ""; // Операнд 2 - все, что осталось после operand1.
+        }
+        else
+        {
+            // Иначе заполняем так же, как в parts.
+            temp_code_line.label = parts.size() > 0 ? parts[0] : "";
+            temp_code_line.mnemonic = parts.size() > 1 ? parts[1] : "";
+            temp_code_line.operand1 = parts.size() > 2 ? parts[2] : "";
+            temp_code_line.operand2 = parts.size() > 3 ? parts.mid(3).join(" ") : ""; // Операнд 2 - все, что осталось после operand1.
+        }
         source_code.push_back(temp_code_line);
     }
-
     return source_code;
-
 }
 bool TablesManager::ParseAssemblerOperationCode(QTableWidget *table_operation_codes_tableWidget, CodeOperationTable& opCodeTable, QTextEdit* fpe_text)
 {
