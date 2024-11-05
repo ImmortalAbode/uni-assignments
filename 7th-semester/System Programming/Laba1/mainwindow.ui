@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Двухпросмотровый ассемблер в абсолютном формате (Горшков Ан.О., гр. 4412, 2024) </string>
+   <string>Двухпросмотровый ассемблер для программ в абсолютном формате (Горшков Ан.О., гр. 4412, 2024) </string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(208, 208, 208);</string>

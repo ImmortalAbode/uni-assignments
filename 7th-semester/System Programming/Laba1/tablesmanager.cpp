@@ -113,7 +113,7 @@ QStringList TablesManager::GetLineItems(const QString &line)
     QStringList lineItems;
 
     //Регулярное выражение для поиска возможных последовательностей символов.
-    static const QRegularExpression regex(R"((\w*'.+'\w*)|(\w+\s*)|([^\s]+\s*))");
+    static const QRegularExpression regex(R"((\w*'.*'\w*)|(\w+\s*)|([^\s]+\s*))");
     //Извлечение готовых последовательностей символов из строки.
     QRegularExpressionMatchIterator it = regex.globalMatch(line);
     while (it.hasNext())

@@ -181,8 +181,9 @@ bool PassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::vecto
                                     fpe_text->append("Предупреждение: Строка " + QString::number(i + 1) + ": Весь следующий текст программы после строки с директивой END учитываться не будет.\n");
                                 }
                                 //Если Точка входа программы не укладывается в адресное пространство.
-                                if (end_prog_address < start_prog_address || end_prog_address >= this->addressCounter)
+                                if (end_prog_address < start_prog_address || end_prog_address > this->addressCounter)
                                 {
+                                    qDebug() << end_prog_address << " " << start_prog_address << " " << this->addressCounter;
                                     fpe_text->append("Строка " + QString::number(i + 1) + ": Точка входа программы не укладывается в адресное пространство (Директива END)!");
                                     return false;
                                 }
@@ -259,7 +260,7 @@ bool PassProcessor::LoadSymbolicNamesTable(QTextEdit* fpe_text, const std::vecto
                                             sup_table.push_back({str_AC, mnemonic, operand1, ""});
                                             this->TManager.LoadOneLineToSupportTable(aux_table, sup_table[i]);
                                             //Увеливаем СА = СА + кол-во рез. памяти (длина юникодной строки, каждый символ = 1 байт).
-                                            int operand_length = operand1.split('\'')[1].length();
+                                            int operand_length = operand1.mid(2, sup_table[i].operand1.length() - 3).trimmed().length();
                                             addressCounter += operand_length;
                                         }
                                         //Иначе неизвестно, что задано.
@@ -623,12 +624,12 @@ bool PassProcessor::LoadBinaryCodeText(QTableWidget *omh_table, QTextEdit *spe_t
      -------------------------------------------------------------------------------------------------------------*/
     //Для заголовка объектного модуля.
     omh_table->setItem(0, 0, new QTableWidgetItem(sup_table[0].machine_code));
-    omh_table->setItem(0, 1, new QTableWidgetItem(Convert::DecToHex(length_programm).rightJustified(6, '0')));
-    omh_table->setItem(0, 2, new QTableWidgetItem(Convert::DecToHex(this->start_prog_address).rightJustified(6, '0')));
+    omh_table->setItem(0, 1, new QTableWidgetItem(Convert::DecToHex(this->start_prog_address).rightJustified(6, '0')));
+    omh_table->setItem(0, 2, new QTableWidgetItem(Convert::DecToHex(length_programm).rightJustified(6, '0')));
     //Для двоичного кода.
     binaryCode_text->append("H  " + sup_table[0].machine_code + "\t" +
                                  Convert::DecToHex(this->start_prog_address).rightJustified(6, '0') + "\t" +
-                                 Convert::DecToHex(this->addressCounter).rightJustified(6, '0'));
+                                 Convert::DecToHex(this->addressCounter - this->start_prog_address).rightJustified(6, '0'));
 
     /*------------------------------------------------------------------
      | 2. Цикл строки исходного текста (через вспомогательную таблицу).|
@@ -680,7 +681,7 @@ bool PassProcessor::LoadBinaryCodeText(QTableWidget *omh_table, QTextEdit *spe_t
                 else
                 {
                     binary_opCode = "";
-                    QString unicode_string{sup_table[i].operand1.split('\'')[1]};
+                    QString unicode_string{sup_table[i].operand1.mid(2, sup_table[i].operand1.length() - 3)};
                     for (QChar chr : unicode_string){
                         int ASCII_code = chr.unicode();
                         data.append(Convert::DecToHex(ASCII_code));
