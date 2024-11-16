@@ -702,17 +702,14 @@ bool PassProcessor::LoadBinaryCodeText(QTableWidget *omh_table, QTableWidget *se
         //Если найдена директива END, то выгружается ТМ, формируется запись-конец и запись двоичного кода завершается.
         if (sup_table[i].operation_code == "END")
         {
-            if (this->start_prog_address == 0)
+            //Формируем записи-модификаций.
+            for (int row = 0; row < settings_table->rowCount() - 1; ++row)
             {
-                //Формируем записи-модификаций.
-                for (int row = 0; row < settings_table->rowCount() - 1; ++row)
+                QTableWidgetItem* item = settings_table->item(row, 0);
+                if (item)
                 {
-                    QTableWidgetItem* item = settings_table->item(row, 0);
-                    if (item)
-                    {
-                        QString OAMK = item->text();
-                        binaryCode_text->append("M  " + OAMK.rightJustified(6, '0'));
-                    }
+                    QString OAMK = item->text();
+                    binaryCode_text->append("M  " + OAMK.rightJustified(6, '0'));
                 }
             }
             //Формируем запись-конец.
@@ -799,11 +796,8 @@ bool PassProcessor::LoadBinaryCodeText(QTableWidget *omh_table, QTableWidget *se
                 if (symb_table.find(sup_table[i].operand1, address))
                 {
                     binary_opCode = sup_table[i].operation_code;
-                    if (this->start_prog_address == 0)
-                    {
-                        //Необходимо занести в ТМ ОАМК.
-                        this->TManager.LoadOneLineToSettingsTable(settings_table, sup_table[i].machine_code);
-                    }
+                    //Необходимо занести в ТМ ОАМК.
+                    this->TManager.LoadOneLineToSettingsTable(settings_table, sup_table[i].machine_code);
                     data = address;
                 }
                 else{
@@ -818,8 +812,7 @@ bool PassProcessor::LoadBinaryCodeText(QTableWidget *omh_table, QTableWidget *se
                 QString address{};
                 QString operand = sup_table[i].operand1;
                 //Относительная адресация в случае программы в перемещаемом формате (ПвПФ).
-                if (this->start_prog_address == 0)
-                    operand = sup_table[i].operand1.mid(1, sup_table[i].operand1.length() - 2);
+                operand = sup_table[i].operand1.mid(1, sup_table[i].operand1.length() - 2);
                 //Поиск СИ в ТСИ (операнд точно должен быть СИ).
                 if (symb_table.find(operand, address))
                 {

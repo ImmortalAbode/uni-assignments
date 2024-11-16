@@ -251,19 +251,14 @@ QString Checks::CheckProgramName(const QString &prog_name)
 //Проверка адреса загрузки программы.
 QString Checks::CheckProgramDownloadAddress(const QString& download_address)
 {
-    if (!download_address.isEmpty())
-    {
-        if (!CheckAmountMemoryForAddress(download_address))
-        {
-            return "Строка 1: Адрес загрузки программы содержит недопустимые символы! Текущий адрес загрузки: " + download_address + ".";
-        }
-        const int MAX_LOAD_ADDRESS_VALUE{16777215}; // FFFFFF в 16 СИ.
-        int load_address = Convert::HexToDec(download_address);
-        if (load_address > MAX_LOAD_ADDRESS_VALUE)
-        {
-            return "Строка 1: Переполнение счетчика адреса! СА = " + QString::number(load_address) + ".\n";
-        }
-    }
+    if (!CheckAmountMemoryForAddress(download_address))
+        return "Адрес загрузки программы содержит недопустимые символы! Текущий адрес загрузки: " + download_address + ".";
+    const int MAX_LENGTH_HEX_LOAD_ADDRESS{6};
+    QString load_address = download_address.rightJustified(6, '0');
+    if (load_address.length() > MAX_LENGTH_HEX_LOAD_ADDRESS)
+        return "Строка 1: Переполнение счетчика адреса! СА = " + load_address + ".\n";
+    if (Convert::HexToDec(load_address) != 0)
+        return "Адрес загрузки программы неизвестен! Он должен быть равен 0 или отсутствовать.\n";
 
     return "";
 }
