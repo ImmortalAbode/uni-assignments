@@ -15,5 +15,9 @@ Directories:
 
 +6th-semester - Java programming, Numerical Methods (C++), Software Architecture (C++ and QT), Transact-SQL, Web-Programming (HTML, CSS, JSON, C and NodeJS, MongoDB).
 
++7th-semester - Computer Modelling (C++, Python), System Programming (C++ and QT);
+
++8th-semester - Information Security (C++).
+
 *"Don't worry if something doesn't work. If everything worked, you'd be fired."*
 	 @Mosher’s Law of Software Engineering
